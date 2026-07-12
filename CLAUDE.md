@@ -1,7 +1,18 @@
-# Yardsmith — repo guide
+# MatchFit — repo guide
 
 Vanilla-JS PWA (no framework, no npm build for the site itself), served as-is
-from the repo root by GitHub Pages at yardsmith.golf.
+from the repo root.
+
+> **This repo is MatchFit — a soccer strength & athleticism app**, converted
+> from the "Yardsmith" golf app (July 2026). It's built for a 16-year-old
+> winger/midfielder: **add muscle without losing his game** (speed, agility,
+> aerobic engine). The **domain brain is `SOCCER-TRAINING-REFERENCE.md`**
+> (thesis + the research base in `research/`); read it before changing the
+> training model, the Speed & Power day, or the jump test. The older
+> `YARDSMITH-BRAIN.md`, `DESIGN-CHANGES.md`, `CLUBHEAD-SPEED-REFERENCE.md` and
+> the golf `*.md` docs are **legacy history** — accurate about the build system
+> and architecture, but their product/training content is golf and superseded.
+> No public domain is configured yet (see Deploy).
 
 ## Where to edit (the one rule that matters)
 
@@ -50,10 +61,17 @@ Hand-pinned dark overrides live in the `CORE` list inside
 
 ## Deploy
 
-Merging to `main` triggers `.github/workflows/deploy.yml`, which rsync-stages
-the repo root (minus src/, scripts/, docs, native projects) and publishes to
-GitHub Pages. There is no build step in CI — **the committed build outputs are
-what ships**, so always rebuild and commit them together with your src/ change.
+**Auto-deploy is currently DISABLED.** Both workflows (`deploy.yml` for Pages,
+`deploy-functions.yml` for Supabase) were switched to `workflow_dispatch` only,
+and the golf `CNAME` (yardsmith.golf) was removed — MatchFit has no domain or
+backend of its own yet. Until you set those up, a push to `main` publishes
+nothing. To ship later: set up GitHub Pages (and your own Supabase project +
+secrets), then re-enable the `push:` trigger in each workflow.
+
+When re-enabled, deploy rsync-stages the repo root (minus src/, scripts/, docs,
+native projects) and publishes to Pages. There is no build step in CI — **the
+committed build outputs are what ships**, so always rebuild and commit them
+together with your src/ change.
 
 Native shells: `node scripts/build-www.mjs` gathers the served files into
 `www/` for Capacitor (`npx cap sync`).
@@ -84,10 +102,12 @@ non-fast-forward rejection is the safety net — respect it:
   `sw.js`, `www/`) are never resolved by hand: take either side, then rebuild —
   the build regenerates truth from `src/`.
 - **Push early, push small.** Long-lived local work is what makes rebases hurt.
-- **Record decisions in `YARDSMITH-BRAIN.md`** (product/strategy) or
-  `DESIGN-CHANGES.md` (design/UX) — the repo docs are the only memory shared
-  between sessions. A decision that lives only in one chat doesn't exist for
-  the other.
-- Branding note: the app is **Yardsmith** (renamed from FairwayFuel Jul 2026 —
-  rationale in `YARDSMITH-BRAIN.md`). The localStorage profile key stays
-  `"fairwayfuel"` and `ff_*` keys keep their names — never rename stored keys.
+- **Record training/product decisions in `SOCCER-TRAINING-REFERENCE.md`** (the
+  domain brain) — the repo docs are the only memory shared between sessions.
+  A decision that lives only in one chat doesn't exist for the next.
+- Branding note: the app is **MatchFit** (converted from the Yardsmith golf app
+  Jul 2026; Yardsmith itself was renamed from FairwayFuel). The localStorage
+  profile key stays `"fairwayfuel"` and all `ff_*` keys keep their names —
+  **never rename stored keys** (invisible to users, and renaming breaks
+  cloud-sync/migrations). The user-facing brand is set in
+  `src/index.template.html`, `manifest.webmanifest`, and `package.json`.
