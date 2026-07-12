@@ -5,10 +5,12 @@ name: Deploy Yardsmith to GitHub Pages
 # don't change what GitHub Pages serves, so they're ignored — this stops a full
 # Pages deploy (and the single-file deployment queue) firing on every doc edit.
 on:
-  # Auto-deploy is DISABLED for this fork — MatchFit has no GitHub Pages domain
-  # yet, and the old config pointed at yardsmith.golf. Re-enable the `push`
-  # trigger (and set up Pages) when you're ready to publish. Until then this only
-  # runs when you start it by hand from the Actions tab.
+  # Publishes to GitHub Pages at https://forgerperformanceco.github.io/soccer-workout/
+  # on every push to main. (configure-pages enablement:true turns Pages on the
+  # first time.) No CNAME → default github.io domain. Set up a custom domain by
+  # re-adding a CNAME file + the domain in repo Settings → Pages.
+  push:
+    branches: [main]
   workflow_dispatch:
 
 # Allow the workflow to publish to GitHub Pages.

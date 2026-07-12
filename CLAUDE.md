@@ -61,12 +61,13 @@ Hand-pinned dark overrides live in the `CORE` list inside
 
 ## Deploy
 
-**Auto-deploy is currently DISABLED.** Both workflows (`deploy.yml` for Pages,
-`deploy-functions.yml` for Supabase) were switched to `workflow_dispatch` only,
-and the golf `CNAME` (yardsmith.golf) was removed — MatchFit has no domain or
-backend of its own yet. Until you set those up, a push to `main` publishes
-nothing. To ship later: set up GitHub Pages (and your own Supabase project +
-secrets), then re-enable the `push:` trigger in each workflow.
+**Pages deploy is ENABLED; the Supabase deploy is still disabled.** `deploy.yml`
+publishes to GitHub Pages at **https://forgerperformanceco.github.io/soccer-workout/**
+on every push to `main` (no `CNAME`, so the default github.io domain). The golf
+`deploy-functions.yml` (Supabase) is still `workflow_dispatch` only — it targets
+the original Yardsmith backend and needs secrets this repo doesn't have; set up
+your own Supabase project + secrets before re-enabling it. The AI coach and
+cloud login/sync stay inert until that backend exists.
 
 When re-enabled, deploy rsync-stages the repo root (minus src/, scripts/, docs,
 native projects) and publishes to Pages. There is no build step in CI — **the
