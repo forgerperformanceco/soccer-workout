@@ -1,0 +1,90 @@
+/* Yardsmith service worker — offline-first for the single-page app.
+   CACHE is stamped with the build's content hash by scripts/build.mjs, so a new
+   build invalidates old caches automatically — no manual version bumps. */
+var CACHE = 'yardsmith-{{V}}';
+var ASSETS = [
+  './',
+  './index.html',
+  './styles.css?v={{V}}',
+  './fonts/ffnum.woff2',
+  './app.js?v={{V}}',
+  './privacy.html',
+  './cloud-sync.js?v=112',
+  './coach.js?v=88',
+  './manifest.webmanifest',
+  './logo-dark-mark.png',
+  // og-image.png intentionally NOT precached — it's only ever fetched by social scrapers.
+  './icon-192.png',
+  './icon-512.png',
+  './apple-touch-icon.png'
+];
+
+self.addEventListener('install', function (e) {
+  e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(ASSETS); }));
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', function (e) {
+  e.waitUntil(
+    caches.keys().then(function (keys) {
+      return Promise.all(keys.filter(function (k) { return k !== CACHE; })
+        .map(function (k) { return caches.delete(k); }));
+    }).then(function () { return self.clients.claim(); })
+  );
+});
+
+/* Notifications: clicking one focuses (or opens) the app. The push handler is in
+   place for when server push (VAPID + a scheduled Edge Function) ships — until
+   then only the app's own local reminders use showNotification. */
+self.addEventListener('notificationclick', function (e) {
+  e.notification.close();
+  e.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (list) {
+      for (var i = 0; i < list.length; i++) {
+        if ('focus' in list[i]) return list[i].focus();
+      }
+      return self.clients.openWindow('./');
+    })
+  );
+});
+self.addEventListener('push', function (e) {
+  var data = {};
+  try { data = e.data ? e.data.json() : {}; } catch (err) {}
+  e.waitUntil(self.registration.showNotification(data.title || 'Yardsmith ⛳', {
+    body: data.body || 'Time to train — your yards are waiting.',
+    icon: 'icon-192.png', badge: 'icon-192.png', tag: data.tag || 'ff-push'
+  }));
+});
+
+/* Network-first for the HTML (so updates land), cache-first for everything else. */
+self.addEventListener('fetch', function (e) {
+  if (e.request.method !== 'GET') return;
+  // Only handle our own origin — let the Supabase SDK/API and any CDN go straight to network.
+  if (new URL(e.request.url).origin !== self.location.origin) return;
+  var isDoc = e.request.mode === 'navigate' ||
+    (e.request.headers.get('accept') || '').indexOf('text/html') !== -1;
+  if (isDoc) {
+    // network-first, and force a fresh trip past the browser's HTTP cache —
+    // GitHub Pages serves HTML with max-age=600, so a plain fetch could hand
+    // back a 10-minute-stale index.html (old app.js hash → old app) right after
+    // a deploy. no-store guarantees the new index.html, which pulls the new
+    // hashed app.js/styles.css. Offline still falls back to the cached copy.
+    e.respondWith(
+      fetch(e.request.url, { cache: 'no-store', credentials: 'same-origin' }).then(function (res) {
+        var copy = res.clone();
+        caches.open(CACHE).then(function (c) { c.put('./index.html', copy); });
+        return res;
+      }).catch(function () { return caches.match('./index.html').then(function (h) { return h || caches.match('./'); }); })
+    );
+  } else {
+    e.respondWith(
+      caches.match(e.request).then(function (hit) {
+        return hit || fetch(e.request).then(function (res) {
+          var copy = res.clone();
+          caches.open(CACHE).then(function (c) { c.put(e.request, copy); });
+          return res;
+        }).catch(function () { return hit; });
+      })
+    );
+  }
+});

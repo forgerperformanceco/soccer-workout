@@ -1,0 +1,28 @@
+# Supabase project config. `supabase link` uses project_id; the [functions]
+# blocks set who is allowed to call each Edge Function.
+project_id = "tbwmckmyzoxzhpqlomsp"
+
+[functions.ai-coach]
+# MUST be false: with verify_jwt=true the gateway 401s the browser's CORS preflight
+# (OPTIONS has no token) before our code runs, which breaks the coach in the browser.
+# The function does its OWN auth — it reads the Bearer token and calls getUser, and
+# returns 401 if it's missing/invalid — so this is still fully protected.
+verify_jwt = false
+
+[functions.paddle-webhook]
+# Paddle calls this server-to-server with no Supabase JWT — it verifies Paddle's
+# own signature instead, so the gateway JWT check must be off.
+verify_jwt = false
+
+[functions.delete-account]
+# Same as ai-coach: keep the gateway check off so the browser's CORS preflight
+# (OPTIONS, no token) isn't 401'd before our code runs. The function does its
+# OWN auth — reads the Bearer token, calls getUser, and 401s if it's missing or
+# invalid — so account deletion is still fully protected.
+verify_jwt = false
+
+[functions.push-daily]
+# Called server-to-server by pg_cron with the anon key + an x-cron-secret
+# header the function checks itself, so the gateway JWT check stays off —
+# same pattern as paddle-webhook.
+verify_jwt = false
