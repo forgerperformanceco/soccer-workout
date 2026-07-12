@@ -9,23 +9,23 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Yardsmith" />
-<title>Yardsmith — Golf Macro Calculator &amp; Mass + Speed Training Plan</title>
-<meta name="description" content="Yardsmith turns muscle into distance: a macro/TDEE calculator plus a 20-week mass &amp; clubhead-speed plan for golfers. Build like a bodybuilder, move like a golfer — add lean mass and hit it longer. Eat. Lift. Bomb." />
+<meta name="apple-mobile-web-app-title" content="MatchFit" />
+<title>MatchFit — Soccer Macro Calculator &amp; Muscle + Speed Training Plan</title>
+<meta name="description" content="MatchFit turns muscle into speed: a macro/TDEE calculator plus a 20-week muscle &amp; athleticism plan for soccer players. Build like a bodybuilder, move like a winger — add muscle and keep your engine. Eat. Lift. Fly." />
 <!-- Social share preview (Open Graph + Twitter) so the link looks like a product, not a bare URL. -->
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Yardsmith" />
-<meta property="og:url" content="https://yardsmith.golf/" />
-<meta property="og:title" content="Yardsmith — Turn Muscle Into Distance" />
-<meta property="og:description" content="A macro calculator + 20-week mass &amp; clubhead-speed plan for golfers. Build like a bodybuilder, move like a golfer — add lean muscle and turn it into distance. Free." />
-<meta property="og:image" content="https://yardsmith.golf/og-image.png" />
+<meta property="og:site_name" content="MatchFit" />
+<meta property="og:url" content="./" />
+<meta property="og:title" content="MatchFit — Turn Muscle Into Speed" />
+<meta property="og:description" content="A macro calculator + 20-week muscle &amp; speed plan for soccer players. Build like a bodybuilder, move like a winger — add muscle without losing your game. Free." />
+<meta property="og:image" content="og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Yardsmith — the golfer's mass &amp; speed system" />
+<meta property="og:image:alt" content="MatchFit — the soccer player's muscle &amp; speed system" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Yardsmith — Turn Muscle Into Distance" />
-<meta name="twitter:description" content="A macro calculator + 20-week mass &amp; clubhead-speed plan for golfers. Free." />
-<meta name="twitter:image" content="https://yardsmith.golf/og-image.png" />
+<meta name="twitter:title" content="MatchFit — Turn Muscle Into Speed" />
+<meta name="twitter:description" content="A macro calculator + 20-week muscle &amp; speed plan for soccer players. Free." />
+<meta name="twitter:image" content="og-image.png" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="icon" type="image/svg+xml" href="icon.svg" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
@@ -49,7 +49,7 @@
 <body>
   <header class="appbar">
     <div class="appbar-in">
-      <button class="wordmark" id="wordmark" type="button" aria-label="Yardsmith home"><img class="wm-ic" src="logo-dark-mark.png" alt="" width="28" height="28" /><span class="wm-text">Yard<span class="em">smith</span></span></button>
+      <button class="wordmark" id="wordmark" type="button" aria-label="MatchFit home"><img class="wm-ic" src="logo-dark-mark.png" alt="" width="28" height="28" /><span class="wm-text">Match<span class="em">Fit</span></span></button>
       <div class="tabs" id="tabs">
         <button data-view="dash" class="active">Dashboard</button>
         <button data-view="calc">Fuel</button>
@@ -68,10 +68,10 @@
   <div class="view active" id="view-dash">
     <div class="dash-hero">
       <img class="hero-ic" src="logo-dark-mark.png" alt="" width="84" height="84" />
-      <div class="brand-kicker"><span class="ball"></span> The Golfer's Mass &amp; Speed System</div>
-      <h1 class="brand">Yard<span class="em">smith</span></h1>
-      <div class="hook">Turn muscle into <span class="em">distance</span>.</div>
-      <p class="tagline">Build like a bodybuilder, move like a golfer — add lean mass and turn it into real distance off the tee.</p>
+      <div class="brand-kicker"><span class="ball"></span> The Soccer Player's Muscle &amp; Speed System</div>
+      <h1 class="brand">Match<span class="em">Fit</span></h1>
+      <div class="hook">Turn muscle into <span class="em">speed</span>.</div>
+      <p class="tagline">Build like a bodybuilder, move like a winger — add real muscle and keep your engine, your speed and your first step.</p>
     </div>
     <div id="dashBody"></div>
   </div>
@@ -82,8 +82,8 @@
     <div class="grid">
 
       <section class="card" aria-label="Your plan">
-        <div class="kicker">⛳ Your Game Plan</div>
-        <h2>Your Yardsmith Plan</h2>
+        <div class="kicker">⚽ Your Game Plan</div>
+        <h2>Your MatchFit Plan</h2>
         <p class="sub">Calculated live as you type.</p>
         <div id="results"></div>
       </section>
@@ -136,7 +136,7 @@
               <li>Berries — 1 cup ≈ <b>15g</b></li>
             </ul>
 
-            <h4>⚡ Fast carbs <span>(great right around training &amp; on the course)</span></h4>
+            <h4>⚡ Fast carbs <span>(great right around training &amp; on match day)</span></h4>
             <ul>
               <li>Honey — 1 tbsp ≈ <b>17g</b></li>
               <li>Medjool date — 1 ≈ <b>18g</b></li>
@@ -180,7 +180,7 @@
       </section>
 
       <section class="card" aria-label="Your details">
-        <div class="kicker">⛳ On the Tee</div>
+        <div class="kicker">⚽ Your Details</div>
         <h2>Your Numbers</h2>
         <div id="calcSummary" class="calc-sum" hidden></div>
         <div id="calcForm">
@@ -216,13 +216,13 @@
           <span class="lbl">Activity Level <span class="unit-suffix">training + daily life</span></span>
           <select id="activity">
             <option value="1.2">Sedentary — desk job, little exercise</option>
-            <option value="1.375">Light — range/play + light lifting 1–3×/wk</option>
-            <option value="1.55" selected>Moderate — gym 3–5×/wk + regular golf</option>
-            <option value="1.725">Very Active — hard training 6–7×/wk, walking 18s</option>
-            <option value="1.9">Athlete — 2-a-days, walking + lifting + speed work</option>
+            <option value="1.375">Light — training/play + light lifting 1–3×/wk</option>
+            <option value="1.55" selected>Moderate — gym 3–5×/wk + team training</option>
+            <option value="1.725">Very Active — hard training 6–7×/wk + matches</option>
+            <option value="1.9">Athlete — 2-a-days, training + lifting + speed work</option>
           </select>
-          <p class="field-help"><b>On this plan + golf 1–2×/week?</b> Use <b>Moderate</b> for the 4-day lifting week.
-          Bump to <b>Very Active</b> only if you run the 5-day week <i>and</i> walk the course; if you ride a cart, stay on <b>Moderate</b>.</p>
+          <p class="field-help"><b>On this plan + soccer 2–3×/week?</b> Use <b>Moderate</b> for the 4-day lifting week.
+          Bump to <b>Very Active</b> only if you run the 5-day week <i>and</i> have matches or full team sessions most days.</p>
         </label>
 
         <label class="field">
@@ -238,25 +238,25 @@
           <div class="goals" id="goals">
             <button type="button" class="goal active" data-goal="leanbulk">
               <div class="gname">🏗️ Lean Bulk</div><div class="gtag">+10%</div>
-              <div class="gdesc">Slow, quality mass. Add power while keeping the range your back and swing need.</div>
+              <div class="gdesc">Slow, quality muscle. Add size &amp; power while staying fast and mobile on the pitch.</div>
             </button>
             <button type="button" class="goal" data-goal="bulk">
               <div class="gname">💪 Bulk</div><div class="gtag">+20%</div>
-              <div class="gdesc">Aggressive size &amp; strength off-season. Maximize speed potential.</div>
+              <div class="gdesc">Aggressive size &amp; strength in the off-season. Build a bigger engine to develop.</div>
             </button>
             <button type="button" class="goal" data-goal="maintain">
-              <div class="gname">⛳ In-Season</div><div class="gtag">Maintain</div>
-              <div class="gdesc">Hold your build &amp; energy through a tournament stretch.</div>
+              <div class="gname">⚽ In-Season</div><div class="gtag">Maintain</div>
+              <div class="gdesc">Hold your muscle &amp; energy through a match-packed stretch of the season.</div>
             </button>
             <button type="button" class="goal" data-goal="cut">
               <div class="gname">🔥 Lean Out</div><div class="gtag">−20%</div>
-              <div class="gdesc">Drop fat, protect muscle. Improve your power-to-weight ratio.</div>
+              <div class="gdesc">Drop fat, protect muscle. Sharpen your power-to-weight and top speed.</div>
             </button>
           </div>
-          <details class="goalhelp"><summary>Which bulk should I pick?</summary>
-            <div><b>Lean Bulk (+10%)</b> is the right default for most people. Past the beginner stage you build muscle at a capped rate (~0.25–0.5 lb/month), so a modest surplus adds mostly muscle with minimal fat — and keeps you mobile for the swing. A bigger surplus doesn’t build more muscle, just more fat.<br><br>
-            <b>Bulk (+20%)</b> is for <b>true beginners and hard-gainers</b>, or when you want faster scale gains and will run a <b>Lean Out</b> afterward. It speeds scale weight but adds more fat, so plan a cut to follow.
-            <span class="goalhelp-note">Either way the surplus goes to carbs — protein and fat are fixed, carbs fill the rest — to fuel hard training and a long round.</span></div>
+          <details class="goalhelp"><summary>Which one should I pick?</summary>
+            <div><b>Lean Bulk (+10%)</b> is the right default for most players, and for a young athlete who wants to add muscle without losing a step. You build muscle at a capped rate (a teen a bit faster, roughly ~0.5–1 lb/month), so a modest surplus adds mostly muscle with minimal fat — and keeps you quick and mobile. A bigger surplus doesn’t build more muscle, just more fat.<br><br>
+            <b>Bulk (+20%)</b> is for <b>true beginners and hard-gainers</b> deep in the off-season, or when you want faster scale gains and will run a <b>Lean Out</b> afterward. It speeds scale weight but adds more fat, so plan a cut to follow.
+            <span class="goalhelp-note">Either way the surplus goes to carbs — protein and fat are fixed, carbs fill the rest — to fuel hard training and 90 minutes of running.</span></div>
           </details>
         </label>
         <div class="form-actions">
@@ -273,35 +273,35 @@
   <div class="view" id="view-plan">
     <section class="card">
       <div class="plan-intro">
-        <div class="kicker">⛳ Range Session</div>
-        <h2>The 20-Week Speed Blueprint</h2>
+        <div class="kicker">⚽ Training Session</div>
+        <h2>The 20-Week Muscle &amp; Speed Blueprint</h2>
         <div class="plan-phase" id="planPhase"></div>
         <p class="lead" id="planLead">
-          <b>Add lean muscle</b> and turn it into <b>clubhead speed</b> — one consistent week, all 20 weeks.
+          <b>Add lean muscle</b> and turn it into <b>on-pitch speed</b> — one consistent week, all 20 weeks.
         </p>
         <div class="pillars">
-          <div class="pillar"><div class="ico">🏗️</div><div><h3>Build the Mass</h3>
+          <div class="pillar"><div class="ico">🏗️</div><div><h3>Build the Muscle</h3>
             <p>Heavy, <b>low-rep</b> work on the big lifts — dense, powerful muscle, not just size.</p></div></div>
-          <div class="pillar"><div class="ico">⚡</div><div><h3>Make it Fast</h3>
-            <p>Drive every rep up <b>explosively</b> + plyos for <b>rate of force development</b>.</p></div></div>
-          <div class="pillar"><div class="ico">🌀</div><div><h3>Ground Force &amp; Rotate</h3>
-            <p>Footwork, throws and overspeed swings transfer power into the club.</p></div></div>
+          <div class="pillar"><div class="ico">⚡</div><div><h3>Make it Explosive</h3>
+            <p>Drive every rep up <b>explosively</b> + jumps &amp; sprints for <b>rate of force development</b>.</p></div></div>
+          <div class="pillar"><div class="ico">🚀</div><div><h3>Sprint &amp; Cut</h3>
+            <p>Max-velocity sprints, bounds and throws turn strength into acceleration and change of direction.</p></div></div>
         </div>
       </div>
 
       <div class="phase-detail" id="phaseDetail"></div>
 
       <details class="fold tracker-fold">
-        <summary id="planFoldTitle">📈 How to make it work (and keep your swing)</summary>
+        <summary id="planFoldTitle">📈 How to make it work (and keep your speed)</summary>
         <div class="fold-body">
           <ul>
             <li id="planRateBullet"><b>Clean surplus:</b> Lean Bulk (+10%), gain <b>~0.5–0.75 lb/week</b> — not a dirty bulk.</li>
             <li><b>Protein daily:</b> ~1 g/lb, spread across meals.</li>
             <li><b>Quality food &amp; gut health:</b> whole foods; watch triggers if you bloat.</li>
             <li><b>Progressive overload:</b> on the big lifts, add weight when the top set still moves fast — strength first, reps second. Log it.</li>
-            <li><b>Ground &amp; turn:</b> never skip the 2–3 weekly speed/overspeed sessions.</li>
-            <li><b>Measure it:</b> track clubhead speed on a radar, chase a new number.</li>
-            <li><b>Mobility (protects your back) &amp; 7–9 hrs sleep:</b> recovery is where it's made.</li>
+            <li><b>Sprint &amp; jump:</b> never skip the weekly speed &amp; power session — that’s what keeps the muscle fast.</li>
+            <li><b>Measure it:</b> test your vertical jump every 2 weeks, chase a new number.</li>
+            <li><b>Mobility &amp; 7–9 hrs sleep:</b> recovery is where it's made — and where a growing teen makes the most of it.</li>
           </ul>
         </div>
       </details>
@@ -346,7 +346,7 @@
   </div>
 
   <footer>
-    <strong>Yardsmith</strong> — Eat. Lift. Bomb. · The Golfer’s Mass &amp; Speed System.
+    <strong>MatchFit</strong> — Eat. Lift. Fly. · The Soccer Player’s Muscle &amp; Speed System.
     <details class="disc-fold">
       <summary>Evidence-based starting points — not medical advice. How it’s calculated ›</summary>
       <div class="disc">

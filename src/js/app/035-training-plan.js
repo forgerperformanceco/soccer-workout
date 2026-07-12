@@ -3,33 +3,33 @@
   // One consistent, concurrent week — run for the full 20 weeks (see reference doc for the evidence).
   var PHASES = [
     {
-      id: "main", title: "Your Weekly Program", goal: "build mass and clubhead speed together",
+      id: "main", title: "Your Weekly Program", goal: "add muscle while keeping your speed and engine",
       blurb: "One smart concurrent week, run in waves for all 20 — the essentials:",
       chips: ["💪 Size + strength + speed every week", "🌊 Build → heavy → deload waves", "📈 Overload applied for you", "🏁 2-week peak to finish"],
       speed: {
         title: "Speed & Power",
-        note: "Jumps and throws are the strongest predictors of clubhead speed, so they lead. Overspeed swings are a lighter add-on. Your own speed trend is the real proof.",
+        note: "Jumps and sprints are the strongest drivers of on-pitch speed and acceleration, so they lead. Med-ball throws add the rotational power behind your shot and your sprint. Your own jump and sprint numbers are the real proof.",
         field: {
-          intro: "Jumps and throws turn muscle into clubhead speed. Do them first, fresh \u2014 max intent, full rest, low reps. Stop the moment a rep slows.",
+          intro: "Jumps, sprints and throws turn muscle into on-pitch speed. Do them first, fresh \u2014 max intent, full rest, low reps. Stop the moment a rep slows.",
           ex: [
-            ["Countermovement jump", "4 \u00d7 3", "Dip and explode straight up \u2014 max height, land soft, full recovery between reps. (The #1 physical predictor of clubhead speed.)"],
-            ["Rotational med-ball throw", "4 \u00d7 4 / side", "Rotate and release at max speed; reset every rep. Both sides."],
-            ["Seated chest throw", "3 \u00d7 4", "Sit on the floor, explosive chest pass \u2014 pure upper-body pop, no legs."],
-            ["Overhead med-ball slam", "3 \u00d7 4", "Full overhead reach, slam hard \u2014 total-body vertical power."],
-            ["Lateral bound", "3 \u00d7 4 / side", "Explosive side-to-side \u2014 the downswing weight shift."],
-            ["Ground-force footwork", "3 \u00d7 5 / side", "Lead-foot push \u2014 drive into the ground from the top of the swing."],
-            ["Overspeed swings", "3 \u00d7 5", "Light stick (or your driver flipped) at MAX intent, both sides, full rest. Structured ramp: 2\u00d75 your first two weeks \u2192 3\u00d75 \u2192 4\u00d75 as you adapt; deload weeks drop back to 2\u00d75. Modest evidence \u2014 the add-on, not the main event."]
+            ["Countermovement jump", "4 \u00d7 3", "Dip and explode straight up \u2014 max height, land soft, full recovery between reps. (The #1 physical predictor of sprint speed and power.)"],
+            ["Broad jump", "4 \u00d7 3", "Explode forward for max distance, stick the landing. Horizontal power \u2014 that's your acceleration off the mark."],
+            ["Lateral bound", "3 \u00d7 4 / side", "Explosive side-to-side, stick each landing \u2014 the cut and change of direction that beats a defender."],
+            ["Rotational med-ball throw", "4 \u00d7 4 / side", "Rotate and release at max speed; reset every rep. Both sides \u2014 this is shooting and sprinting power."],
+            ["Overhead med-ball slam", "3 \u00d7 4", "Full overhead reach, slam hard \u2014 total-body explosive power."],
+            ["A-skips", "3 \u00d7 20 m", "Tall posture, punch the knee up and the foot down \u2014 clean sprint mechanics so the speed work transfers."],
+            ["Max-velocity sprints", "3 \u00d7 20 m", "Build up over ~10 m, then hit 95\u2013100% for a flying 20 m. Full rest (walk back). Structured ramp: 3 sprints your first two weeks \u2192 4 \u2192 5 as you adapt; deload/peak weeks drop back to 3. Your top-end gear \u2014 the winger's weapon."]
           ]
         },
         gym: {
-          intro: "Same power, loaded \u2014 light weight moved at max speed, full rest, low reps. Explosive work first, while fresh. If a rep slows, the set's done.",
+          intro: "Same power, loaded \u2014 light weight moved at max speed, full rest, low reps. Explosive work first, while fresh. If a rep slows, the set's done. Still finish with sprints \u2014 nothing in the gym replaces top speed.",
           ex: [
             ["Trap-bar jump", "4 \u00d7 3", "Light load \u2014 explode straight off the ground, land soft, full recovery. (No trap bar? Dumbbell jump squat.)"],
-            ["Landmine rotational throw", "4 \u00d7 4 / side", "Drive from the hips and rotate the bar across at max speed. (No landmine? Fast cable or band chop.)"],
-            ["Speed bench press", "4 \u00d7 4", "Light bar (~half your usual) \u2014 every rep max velocity up. Upper-body ballistic power. (Or an explosive DB push press.)"],
-            ["Kettlebell swing", "3 \u00d7 6", "Explosive hip snap \u2014 the ground force that starts the downswing. Hips, not arms."],
-            ["Cable lateral chop", "3 \u00d7 4 / side", "Explosive rotation across the body \u2014 the weight shift. (A band works too.)"],
-            ["Overspeed swings", "3 \u00d7 5", "Light stick (or your driver flipped) at MAX intent, both sides, full rest. Structured ramp: 2\u00d75 your first two weeks \u2192 3\u00d75 \u2192 4\u00d75 as you adapt; deload weeks drop back to 2\u00d75. Modest evidence \u2014 the add-on, not the main event."]
+            ["Kettlebell swing", "3 \u00d7 6", "Explosive hip snap \u2014 the hip drive behind acceleration. Hips, not arms."],
+            ["Landmine rotational throw", "4 \u00d7 4 / side", "Drive from the hips and rotate the bar across at max speed. Shooting power. (No landmine? Fast cable or band chop.)"],
+            ["Speed bench press", "4 \u00d7 4", "Light bar (~half your usual) \u2014 every rep max velocity up. Upper-body power for holding defenders off. (Or an explosive DB push press.)"],
+            ["Lateral bound", "3 \u00d7 4 / side", "Explosive side-to-side, stick each landing \u2014 change of direction. (No gear needed.)"],
+            ["Max-velocity sprints", "3 \u00d7 20 m", "Build up over ~10 m, then hit 95\u2013100% for a flying 20 m. Full rest (walk back). Structured ramp: 3 sprints your first two weeks \u2192 4 \u2192 5 as you adapt; deload/peak weeks drop back to 3. Your top-end gear \u2014 the winger's weapon."]
           ]
         }
       },
@@ -42,7 +42,7 @@
           ["Barbell Bench Press","4 \u00d7 5 (heavy \u00b7 fast up)"],["Incline DB Press","3 \u00d7 10"],["Standing Overhead Press","4 \u00d7 6"],
           ["Single-Arm DB Bench Press","3 \u00d7 8 / side"],["Lateral Raise","3 \u00d7 15"],["Cable Triceps Pushdown","3 \u00d7 12"],["Cable Wood-chop","3 \u00d7 10 / side"]
         ]},
-        { name:"Rest / Play 18", tag:"rest", type:"rest" },
+        { name:"Rest / Play", tag:"rest", type:"rest" },
         { name:"Day 3 \u2014 Speed & Power", tag:"speed", type:"speed" },
         { name:"Day 4 \u2014 Lower (Hinge + Power)", tag:"Lift", ex:[
           ["Seated Leg Curl","3 \u00d7 12"],["Deadlift","4 \u00d7 4 (heavy \u00b7 fast up)"],["Hip Thrust","4 \u00d7 8"],
@@ -52,7 +52,7 @@
           ["Weighted Pull-up","4 \u00d7 6 (fast up)"],["Chest-Supported Row","4 \u00d7 8"],["Lat Pulldown","3 \u00d7 12"],["Single-Arm DB Row","3 \u00d7 8 / side"],
           ["Face Pull","3 \u00d7 15"],["DB Curl","3 \u00d7 12"],["Wrist Curl + Reverse","2 \u00d7 15"]
         ]},
-        { name:"Rest / Play 18", tag:"rest", type:"rest" }
+        { name:"Rest / Play", tag:"rest", type:"rest" }
       ],
       days4: [
         { name:"Day 1 \u2014 Lower (Quads & Hinge)", tag:"Lift", ex:[
@@ -63,14 +63,14 @@
           ["Barbell Bench Press","4 \u00d7 5 (heavy \u00b7 fast up)"],["Incline DB Press","3 \u00d7 10"],["Standing Overhead Press","4 \u00d7 6"],
           ["Single-Arm DB Bench Press","3 \u00d7 8 / side"],["Lateral Raise","3 \u00d7 15"],["Cable Triceps Pushdown","3 \u00d7 12"],["Cable Wood-chop","3 \u00d7 10 / side"]
         ]},
-        { name:"Rest / Play 18", tag:"rest", type:"rest" },
+        { name:"Rest / Play", tag:"rest", type:"rest" },
         { name:"Day 3 \u2014 Speed & Power", tag:"speed", type:"speed" },
-        { name:"Rest / Play 18", tag:"rest", type:"rest" },
+        { name:"Rest / Play", tag:"rest", type:"rest" },
         { name:"Day 4 \u2014 Upper (Pull + Rotate)", tag:"Lift", ex:[
           ["Weighted Pull-up","4 \u00d7 6 (fast up)"],["Chest-Supported Row","4 \u00d7 8"],["Lat Pulldown","3 \u00d7 12"],["Single-Arm DB Row","3 \u00d7 8 / side"],
           ["Face Pull","3 \u00d7 15"],["DB Curl","3 \u00d7 12"],["Wrist Curl + Reverse","2 \u00d7 15"]
         ]},
-        { name:"Rest / Play 18", tag:"rest", type:"rest" }
+        { name:"Rest / Play", tag:"rest", type:"rest" }
       ]
     }
   ];
@@ -345,7 +345,7 @@
     }
     return h+'</div>';
   }
-  // One-glance purpose tag per exercise: 🏋️ strength · 💪 mass · ⚡ power/speed · 🌀 golf rotation
+  // One-glance purpose tag per exercise: 🏋️ strength · 💪 mass · ⚡ power/speed · 🌀 rotational power
   function purposeFor(n){
     if(/Single-Arm/i.test(n)) return "🌀";
     // Rotation before power, so rotational throws/chops stay 🌀. "Landmine Press" is a
@@ -354,7 +354,7 @@
     // Ballistic/velocity work: throws, tosses, cleans and "Speed X" lifts are ⚡ — the wave
     // must never hand them the 🏋️ "drop reps, go heavier" prescription or trim them like
     // 💪 accessories. They hold full doses and only ease at deload/peak.
-    if(/Jump|Bound|Slam|Chest Pass|Throw|Toss|\bClean\b|Overspeed|Footwork|Swing|Broad|Plyo|^Speed\s/i.test(n)) return "⚡";
+    if(/Jump|Bound|Slam|Chest Pass|Throw|Toss|\bClean\b|Sprint|A-?skip|Overspeed|Footwork|Swing|Broad|Plyo|^Speed\s/i.test(n)) return "⚡";
     if(/Back Squat|Front Squat|Leg Press|Hack Squat|Bench Press|Deadlift|Overhead Press|Pull-up|Romanian/i.test(n)) return "🏋️";
     return "💪";
   }
@@ -390,7 +390,7 @@
     accumulate: { label:"Accumulate", ic:"🏗️", strap:"Build phase — push reps to the top of each range; the logger tees up your next jump." },
     intensify:  { label:"Intensify",  ic:"🔥", strap:"Heavy phase — reps drop, loads climb. Add weight, keep every rep fast." },
     deload:     { label:"Deload",     ic:"🪫", strap:"Planned easy week — one set less, ~60% loads. Recovery is when the gains land." },
-    peak:       { label:"Peak",       ic:"🏁", strap:"Final stretch — volume halved, intensity heavy. Shed fatigue, take your yards." }
+    peak:       { label:"Peak",       ic:"🏁", strap:"Final stretch — volume halved, intensity heavy. Shed fatigue, peak for match day." }
   };
   /* A "big event" date (club champs, member-guest, buddies trip) re-anchors the
      taper: the event week and the week before become Peak (volume cut, intensity
@@ -449,16 +449,17 @@
   }
   // The one target pipeline: retain-mode trim (goal) + wave shift (week).
   function effTarget(sr, name, week){ return waveAdjust(adjSets(sr, name), name, week); }
-  // Overspeed swings follow their own structured ramp (a skill/neural dose, not a
-  // hypertrophy target): ease in over weeks 1-2, build to 4×5, back off on deload/peak.
-  function overspeedDose(week){
+  // Max-velocity sprints follow their own structured ramp (a skill/neural dose, not
+  // a hypertrophy target): ease in over weeks 1-2, build to 5 flying sprints, back
+  // off on deload/peak. Distance held short (flying 20 m) — this is pure top speed.
+  function sprintDose(week){
     var wv=waveFor(week);
-    if(wv==="deload" || wv==="peak" || week<=2) return "2 × 5";
-    if(week<=8) return "3 × 5";
-    return "4 × 5";
+    if(wv==="deload" || wv==="peak" || week<=2) return "3 × 20 m";
+    if(week<=8) return "4 × 20 m";
+    return "5 × 20 m";
   }
   function speedDrillTarget(name, sr, week){
-    if(/Overspeed/i.test(name)) return overspeedDose(week);
+    if(/Sprint|Max-?velocity/i.test(name)) return sprintDose(week);
     return effTarget(sr, name, week);
   }
   // Prescribed load for a set, from last logged weight: deload → ~60% (rounded to 5),
@@ -476,7 +477,7 @@
     if(d.type==="rest"){
       var rdone=restDone(curWeek(), dayKey(d));
       return '<div class="day'+(rdone?" rest-done":"")+'"><div class="day-head">'+d.name+' <span class="tag rest">Recover</span></div>'+
-        '<div class="restday">Walk a casual 9, stretch, foam roll. Recovery is when the gains land.</div>'+
+        '<div class="restday">Easy movement, light ball work, stretch and foam roll. Recovery is when the gains land.</div>'+
         '<button class="rest-check'+(rdone?" done":"")+'" type="button" data-restday="'+escAttr(dayKey(d))+'">'+
           (rdone?"✓ Recovery logged — tap to undo":"Mark recovery done")+'</button></div>';
     }
@@ -494,7 +495,7 @@
       }).join("");
       var noGear = smode==="gym"
         ? "No cable? A band anchored at chest/hip height covers the chops. No landmine? Wedge a barbell into a corner."
-        : "No gear for overspeed? A light stick or your driver. No med ball? A heavy backpack, band, or dumbbell works.";
+        : "No space to sprint flat out? Do resisted sprint starts or short hill runs. No med ball? A heavy backpack, band, or dumbbell works.";
       var toggle = '<div class="speed-toggle"><span class="st-lbl">Training at a…</span>'+
         '<span class="seg sm speed-seg">'+
           '<button type="button" data-speedmode="field"'+(smode==="field"?' class="active"':'')+'>⛳ Field</button>'+
@@ -596,7 +597,7 @@
       '<details class="prelift"><summary>🔥 Warm-up &amp; power primer — do these first</summary><div class="prelift-body">'+warmPrimer+'</div></details>';
     return head +
       '<table class="ex"><tr><th>Exercise</th><th style="text-align:right">Sets × Reps</th></tr>'+rows+'</table>'+
-      '<div class="romcue">Full range, every rep — <b>control the lowering (~3 sec)</b>. It builds muscle and protects your swing.</div>'+
+      '<div class="romcue">Full range, every rep — <b>control the lowering (~3 sec)</b>. It builds muscle and protects your joints.</div>'+
       logFoot(d.name)+'</div>';
   }
   // Short chip label for the week strip: "Squat", "Push", "Speed", "Hinge", "Pull", "Rest".
@@ -648,7 +649,7 @@
 
     // ---- clean hero: the workout, front and centre ----
     html+='<div class="lift-hero"><div class="lh-l">'+
-      '<div class="lh-week">WEEK '+wk+' / 20 · '+WAVES[waveFor(wk)].ic+' '+WAVES[waveFor(wk)].label.toUpperCase()+(goalYds()?' · MISSION +'+goalYds()+' YDS':'')+'</div>'+
+      '<div class="lh-week">WEEK '+wk+' / 20 · '+WAVES[waveFor(wk)].ic+' '+WAVES[waveFor(wk)].label.toUpperCase()+'</div>'+
       '<h2 class="lh-name">'+heroName+'</h2>'+
       '<div class="lh-sub">'+(mode==="today"?('Day '+dayOfPlan()+' of your week'):'Browsing the full week')+
         (wd.total?(' <span class="lh-dot">·</span> '+(wd.done>=wd.total?'<b class="lh-done">week complete ✓</b>':'<b class="lh-done">'+wd.done+' of '+wd.total+' done</b>')):'')+'</div>'+
@@ -713,15 +714,15 @@
 
     // Learn: the three reference reads grouped under ONE playbook fold.
     html+='<details class="fold playbook"><summary>📚 Coaching playbook</summary><div class="fold-body">'+
-      '<div class="pb-sec"><h4>🌀 Why this builds clubhead speed</h4>'+phaseWhy()+'</div>'+
+      '<div class="pb-sec"><h4>🌀 Why this builds on-pitch speed</h4>'+phaseWhy()+'</div>'+
       '<div class="pb-sec"><h4>📈 How the plan progresses for you</h4>'+
         '<p><b>The wave.</b> Every 6 weeks the plan itself shifts: <b>Accumulate</b> (wks 1–3) — targets as written, build reps to the top of each range · <b>Intensify</b> (wks 4–5) — big-lift rep targets drop ~2 so the loads climb, accessories drop a set · <b>Deload</b> (wks 6, 12, 18) — one set less everywhere and the logger pre-suggests ~60% loads · <b>Peak</b> (wks 19–20) — volume cut nearly in half, intensity stays heavy. You don’t manage any of it — the day cards and logger update themselves.</p>'+
         '<p><b>Double progression.</b> Hold the same weight until you hit the <b>top of the rep range on every set</b> (e.g. all sets reach 5 on a 4×5). The logger spots it, pre-fills the suggested jump (<b>+2.5–5 lb</b> upper / <b>+5–10 lb</b> lower) into the weight placeholders, and gives you a one-tap fill.</p>'+
         '<p><b>RIR</b> = reps in reserve — how many clean reps you stop short of failure. “RIR 2” means leave about 2 in the tank. The note by each lift gives a target RIR and rest time.</p>'+
-        '<p><b>Speed &amp; power quality.</b> Jumps, throws and overspeed only build speed when every rep is <i>fast</i> — <b>stop a set the instant reps visibly slow</b>, keep the implement light, and rest fully between efforts. Never grind power work.</p></div>'+
+        '<p><b>Speed &amp; power quality.</b> Jumps, throws and sprints only build speed when every rep is <i>fast</i> — <b>stop a set the instant reps visibly slow</b>, stay light and explosive, and rest fully between efforts. Never grind power work.</p></div>'+
       '<div class="pb-sec"><h4>🏆 In-season &amp; peaking</h4>'+
         '<p><b>In-season (tournament stretches).</b> Hold size and strength on a fraction of the work — drop to <b>~1–2 hard sets per muscle, 1–2× a week</b>, but <b>keep the loads heavy</b>; intensity preserves strength. Keep the speed primers, cut accessory volume, switch macros to <b>In-Season Maintain</b>.</p>'+
-        '<p><b>Peak for an event.</b> In the <b>7–10 days</b> before a big round or speed test, <b>cut volume ~40–50% but keep the intensity</b> (heavy singles/doubles, crisp light overspeed). You shed fatigue while holding fitness — expect a <b>~3–6%</b> power bump on the day.</p>'+
+        '<p><b>Peak for an event.</b> In the <b>7–10 days</b> before a big match, showcase or speed test, <b>cut volume ~40–50% but keep the intensity</b> (heavy singles/doubles, crisp sprints). You shed fatigue while holding fitness — expect a <b>~3–6%</b> power bump on the day.</p>'+
         '<p><b>Sleep is training.</b> Aim <b>7–9 h</b>. Sleep loss degrades <i>skill control</i> — tempo and strike — more than strength, so a bad week of sleep shows in your scores before your lifts.</p></div>'+
       '</div></details>';
 
@@ -731,9 +732,9 @@
         '<button type="button" data-freq="4" '+(planState.freq===4?'class="active"':'')+'>4</button>'+
         '<button type="button" data-freq="5" '+(planState.freq===5?'class="active"':'')+'>5</button></div></div>'+
       '<div class="mode-banner '+(retain?"retain":"build")+'">'+
-        (retain?'🔻 <b>Retain mode</b> (auto, from your goal) — accessory volume trimmed; heavy lifts &amp; all speed work stay at full to protect muscle and clubhead speed.'
+        (retain?'🔻 <b>Retain mode</b> (auto, from your goal) — accessory volume trimmed; heavy lifts &amp; all speed work stay at full to protect muscle and top speed.'
                :'🏗️ <b>Build mode</b> (auto, from your goal) — full accessory volume to add muscle, with heavy strength and speed work every week.')+'</div>'+
-      '<div class="exlegend"><b>What each move builds:</b> 🏋️ strength · 💪 mass · ⚡ power/speed · 🌀 golf rotation</div>'+
+      '<div class="exlegend"><b>What each move builds:</b> 🏋️ strength · 💪 mass · ⚡ power/speed · 🌀 rotational power</div>'+
       '<div class="set-jump"><select id="weekSel" aria-label="Jump to week">'+
         (function(){ var o=""; for(var wi=1;wi<=20;wi++) o+='<option value="'+wi+'"'+(wi===wk?' selected':'')+'>Week '+wi+'</option>'; return o; })()+
         '</select><button class="sb-go2" data-startweek="sel">Jump to week</button></div>'+
@@ -763,5 +764,5 @@
     return "Lift";
   }
   function phaseWhy(){
-    return "Each week you build force capacity (size + strength) <b>and</b> train it to fire fast (rate of force development), then transfer it with ground-force work and overspeed swings. Research shows training these qualities together builds just as much muscle as separate blocks — while keeping your speed sharp the whole time. The engine and the gas pedal, every week.";
+    return "Each week you build force capacity (size + strength) <b>and</b> train it to fire fast (rate of force development), then transfer it with jumps and max-velocity sprints. Research shows training these qualities together builds just as much muscle as separate blocks — while keeping your speed and change-of-direction sharp the whole time. The engine and the gas pedal, every week.";
   }

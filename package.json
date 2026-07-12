@@ -1,8 +1,8 @@
 {
-  "name": "yardsmith",
+  "name": "matchfit",
   "version": "1.0.0",
   "private": true,
-  "description": "Yardsmith — golf mass & clubhead-speed PWA, wrapped for the App Store / Play Store via Capacitor.",
+  "description": "MatchFit — soccer muscle & speed PWA, wrapped for the App Store / Play Store via Capacitor.",
   "type": "module",
   "scripts": {
     "build:www": "node scripts/build-www.mjs",

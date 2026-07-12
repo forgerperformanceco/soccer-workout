@@ -210,14 +210,14 @@
     "Calves": ["Standing Calf Raise","Standing Machine Calf Raise","Seated Calf Raise","Leg-Press Calf Raise","Hack-Squat Calf Raise","Single-Leg Calf Raise","Smith Calf Raise","Tibialis Raise","Donkey Calf Raise"],
     "Core / anti-rotation": ["Pallof Press","Single-Arm Pallof Press","Cable Pallof Iso Hold","Cable Wood-chop","High-to-Low Cable Chop","Low-to-High Cable Chop","Cable Rotation","Landmine Rotation","Hanging Leg Raise","Hanging Knee Raise","Cable Crunch","Single-Arm Cable Crunch","Weighted Decline Sit-up","Ab Wheel Rollout","Plank","Weighted Plank","Side Plank","Russian Twist","Dead Bug","Bird Dog","Hollow Hold","Copenhagen Plank"],
     "Grip / carries": ["Farmer Carry","Fat-Grip Farmer Carry","Suitcase Carry","Trap-Bar Carry","Wrist Curl + Reverse","Reverse Wrist Curl","Plate Pinch","Dead Hang","Wrist Roller","Plate Wrist Roller","Towel Pull-up"],
-    "Power / speed (golf)": ["Box Jump","Broad Jump","Lateral Bound","Vertical Jump","Depth Jump","Overhead Med-Ball Slam","Rotational Med-Ball Throw","Split-Stance Rotational Throw","Step-Behind Rotational Throw","Med-Ball Shotput Throw","Med-Ball Chest Pass","Med-Ball Scoop Toss","Kettlebell Swing","Kettlebell Clean","Hang Power Clean","Jump Squat","Trap-Bar Jump","Banded Rotational Pull","Overspeed Swings","Ground-Force Footwork"]
+    "Power / speed": ["Box Jump","Broad Jump","Lateral Bound","Vertical Jump","Depth Jump","Overhead Med-Ball Slam","Rotational Med-Ball Throw","Split-Stance Rotational Throw","Step-Behind Rotational Throw","Med-Ball Shotput Throw","Med-Ball Chest Pass","Med-Ball Scoop Toss","Kettlebell Swing","Kettlebell Clean","Hang Power Clean","Jump Squat","Trap-Bar Jump","Banded Rotational Pull","Max-Velocity Sprint","A-Skips"]
   };
   var EX_GROUP_ORDER = Object.keys(EXERCISE_DB);
   // Classify an exercise name → its group (specific patterns first, so e.g. "Leg Curl"
   // lands in Hinge not Biceps, and "Close-Grip Bench" in Triceps not Chest).
   function exGroupFor(n){
     n=n||"";
-    if(/Jump|Bound|Slam|Throw|Chest Pass|Scoop|Overspeed|Footwork|Clean|Snatch(?!-?Grip)|Plyo|Pogo|Banded Rotation/i.test(n)) return "Power / speed (golf)";
+    if(/Jump|Bound|Slam|Throw|Chest Pass|Scoop|Sprint|A-?skip|Clean|Snatch(?!-?Grip)|Plyo|Pogo|Banded Rotation/i.test(n)) return "Power / speed";
     if(/Calf|Tibialis/i.test(n)) return "Calves";
     if(/Carry|Farmer|Suitcase|Wrist|Forearm|Plate Pinch|Dead Hang|Wrist Roller|Towel Pull/i.test(n)) return "Grip / carries";
     if(/Triceps|Pushdown|Skull|Close.?Grip|Kickback|Diamond Push|JM Press|Tate Press/i.test(n)) return "Triceps";

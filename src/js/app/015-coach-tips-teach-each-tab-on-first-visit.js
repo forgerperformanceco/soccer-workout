@@ -9,12 +9,12 @@
       b:"Your daily <b>Octane score</b>, a coach's read, and quick tiles into every part of the app live here. Tap any tile to dive in." },
     calc:    { key:"calc",  ic:"🍽️", t:"Fuel — your meals & macros",
       b:"Set your numbers once, then tap <b>“Build my day”</b> for a full day of meals and a shopping list built around your favorite foods." },
-    plan:    { key:"plan",  ic:"🏋️", t:"Train — your 20-week speed plan",
-      b:"Each session starts with the <b>warm-up + daily power</b> work (the amber box) — don't skip it, that's where clubhead speed is made." },
+    plan:    { key:"plan",  ic:"🏋️", t:"Train — your 20-week muscle & speed plan",
+      b:"Each session starts with the <b>warm-up + daily power</b> work (the amber box) — don't skip it, that's where your speed is made." },
     progress:{ key:"prog",  ic:"📈", t:"Stats — track it to grow it",
-      b:"Log your <b>lifts, bodyweight and 7-iron speed</b> here. Every entry feeds your Octane so you can watch the trend climb." },
-    gameday: { key:"gday",  ic:"⛳", t:"Game Day — fuel your round",
-      b:"Enter your tee time and we build a <b>timed plan</b>: pre-round meal, first-tee warm-up, on-course fueling and the turn snack." },
+      b:"Log your <b>lifts, bodyweight and jump test</b> here. Every entry feeds your Octane so you can watch the trend climb." },
+    gameday: { key:"gday",  ic:"⚽", t:"Match Day — fuel your match",
+      b:"Enter your kickoff time and we build a <b>timed plan</b>: pre-match meal, warm-up, half-time fuel and the recovery window after." },
     account: { key:"acct",  ic:"☁", t:"You — sign in to unlock everything",
       b:"Sign in (free, one tap, no password) to <b>back up your progress</b> across devices and turn on the <b>AI coach</b>." }
   };

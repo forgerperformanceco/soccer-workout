@@ -5,22 +5,10 @@ name: Deploy Yardsmith to GitHub Pages
 # don't change what GitHub Pages serves, so they're ignored — this stops a full
 # Pages deploy (and the single-file deployment queue) firing on every doc edit.
 on:
-  push:
-    branches:
-      - main
-      - claude/golf-macro-calculator-j2e9vk
-    paths-ignore:
-      - '**.md'
-      - 'supabase/**'
-      - 'android/**'
-      - 'ios/**'
-      - 'assets/**'
-      - 'scripts/**'
-      - 'src/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'capacitor.config.json'
-      - 'codemagic.yaml'
+  # Auto-deploy is DISABLED for this fork — MatchFit has no GitHub Pages domain
+  # yet, and the old config pointed at yardsmith.golf. Re-enable the `push`
+  # trigger (and set up Pages) when you're ready to publish. Until then this only
+  # runs when you start it by hand from the Actions tab.
   workflow_dispatch:
 
 # Allow the workflow to publish to GitHub Pages.

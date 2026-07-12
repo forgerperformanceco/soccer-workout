@@ -1,8 +1,8 @@
 {
   "id": "/index.html",
-  "name": "Yardsmith — Golf Mass & Speed System",
-  "short_name": "Yardsmith",
-  "description": "Macro calculator and 20-week build-muscle, swing-faster training plan for golfers.",
+  "name": "MatchFit — Soccer Muscle & Speed System",
+  "short_name": "MatchFit",
+  "description": "Macro calculator and 20-week build-muscle, stay-fast training plan for soccer players.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -19,11 +19,11 @@
   ],
   "screenshots": [
     { "src": "shot-home.png", "sizes": "1080x2340", "type": "image/png", "form_factor": "narrow", "label": "Your daily Score and plan" },
-    { "src": "shot-train.png", "sizes": "1080x2340", "type": "image/png", "form_factor": "narrow", "label": "Your 20-week speed plan" }
+    { "src": "shot-train.png", "sizes": "1080x2340", "type": "image/png", "form_factor": "narrow", "label": "Your 20-week muscle & speed plan" }
   ],
   "shortcuts": [
     { "name": "Today's workout", "short_name": "Train", "url": "./index.html?go=plan", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
     { "name": "Build my meals", "short_name": "Fuel", "url": "./index.html?go=calc", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
-    { "name": "Game Day plan", "short_name": "Game Day", "url": "./index.html?go=gameday", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
+    { "name": "Match Day plan", "short_name": "Match Day", "url": "./index.html?go=gameday", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
   ]
 }

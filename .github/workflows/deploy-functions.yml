@@ -10,11 +10,9 @@ name: Deploy Supabase (schema + functions)
 # The database schema is applied through the Supabase Management API using the
 # access token you already have — no database password required.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'supabase/**'
-      - '.github/workflows/deploy-functions.yml'
+  # Auto-deploy is DISABLED for this fork — it targets the original Yardsmith
+  # Supabase project (and needs secrets this repo doesn't have). Set up your own
+  # Supabase project + secrets and re-enable the `push` trigger before using it.
   workflow_dispatch:
 
 jobs:
