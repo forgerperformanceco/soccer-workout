@@ -9,18 +9,18 @@ const ballSvg = readFileSync("icon.svg", "utf8");
 const html = `<!doctype html><html><head><meta charset="utf8"><style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
   .card{width:1200px;height:630px;display:flex;align-items:center;gap:56px;padding:0 90px;
-    background:linear-gradient(135deg,#176236 0%,#0b3d22 62%,#0e4f2b 100%);color:#fff;position:relative;overflow:hidden}
+    background:linear-gradient(135deg,#173762 0%,#0b213d 62%,#0e2a4f 100%);color:#fff;position:relative;overflow:hidden}
   .sweep{position:absolute;left:0;right:0;bottom:0;height:190px;background:rgba(255,255,255,.05);
     border-top-left-radius:100% 90px;border-top-right-radius:100% 90px}
   .mark{width:300px;height:300px;flex:none;filter:drop-shadow(0 18px 40px rgba(0,0,0,.35))}
   .mark svg{width:300px;height:300px}
   .tx{position:relative;z-index:2}
-  .kick{font-size:26px;font-weight:600;letter-spacing:.5px;color:#bfe9cf;margin-bottom:14px}
+  .kick{font-size:26px;font-weight:600;letter-spacing:.5px;color:#bfd1e9;margin-bottom:14px}
   .wm{font-size:104px;font-weight:800;line-height:.95;letter-spacing:-1px}
-  .wm b{color:#5ff08f}
+  .wm b{color:#5f9ef0}
   .hook{font-size:44px;font-weight:700;margin-top:18px}
-  .hook b{color:#5ff08f}
-  .sub{font-size:27px;color:#d7e7dc;margin-top:20px;max-width:640px;line-height:1.4}
+  .hook b{color:#5f9ef0}
+  .sub{font-size:27px;color:#d7dee7;margin-top:20px;max-width:640px;line-height:1.4}
 </style></head><body>
   <div class="card">
     <div class="sweep"></div>

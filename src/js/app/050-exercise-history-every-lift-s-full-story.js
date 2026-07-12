@@ -69,7 +69,7 @@
         (bestW>0?'<div class="xh-pr"><div class="v">'+bestW+'<small>lb</small></div><div class="k">heaviest set<br>'+lbEsc(bestWd)+'</div></div>':'')+
         (bestV>0?'<div class="xh-pr"><div class="v">'+Math.round(bestV).toLocaleString()+'<small>lb</small></div><div class="k">best volume<br>'+lbEsc(bestVd)+'</div></div>':'')+
         '</div>';
-      if(series.length>=2) html+='<div class="xh-chart-h">Estimated 1RM trend</div>'+pcLine(series,"#16a34a","xhE1", seriesD, " lb");
+      if(series.length>=2) html+='<div class="xh-chart-h">Estimated 1RM trend</div>'+pcLine(series,"#1653a3","xhE1", seriesD, " lb");
       html+='<div class="xh-list">'+data.map(function(en){
         var setsStr=en.sets.map(function(st){ return (st.w||"–")+"×"+(st.r||"–"); }).join("  ·  ");
         return '<div class="xh-row'+(en.live?" live":"")+'">'+

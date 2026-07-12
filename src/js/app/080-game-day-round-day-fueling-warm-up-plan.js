@@ -572,5 +572,5 @@
     var w=240,h=42,mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts),rng=(mx-mn)||1,step=w/(pts.length-1);
     var d=pts.map(function(v,i){ return (i?"L":"M")+(i*step).toFixed(1)+","+(h-3-((v-mn)/rng)*(h-9)).toFixed(1); }).join(" ");
     return '<svg class="spark" width="100%" height="42" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none">'+
-      '<path d="'+d+'" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      '<path d="'+d+'" fill="none" stroke="#1653a3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   }

@@ -8,9 +8,9 @@
     var W=1080, H=1350, c=document.createElement("canvas"); c.width=W; c.height=H;
     var g=c.getContext("2d");
     var rg=g.createRadialGradient(W*0.82,-H*0.08,80, W*0.82,-H*0.08,H*1.25);
-    rg.addColorStop(0,"#15582f"); rg.addColorStop(0.5,"#0a2317"); rg.addColorStop(1,"#06140d");
+    rg.addColorStop(0,"#153258"); rg.addColorStop(0.5,"#0a1523"); rg.addColorStop(1,"#060c14");
     g.fillStyle=rg; g.fillRect(0,0,W,H);
-    g.strokeStyle="rgba(139,233,172,.07)"; g.lineWidth=110;
+    g.strokeStyle="rgba(139, 180, 233, .07)"; g.lineWidth=110;
     g.beginPath(); g.arc(W*0.88,H*0.16,340,0,6.3); g.stroke();
     g.beginPath(); g.arc(W*0.05,H*0.92,260,0,6.3); g.stroke();
     // brand
@@ -18,14 +18,14 @@
     g.font="900 66px system-ui, -apple-system, sans-serif";
     g.fillStyle="#ffffff"; g.fillText("Match",72,132);
     var bw=g.measureText("Match").width;
-    g.fillStyle="#7ef0a8"; g.fillText("Fit",72+bw,132);
+    g.fillStyle="#7eaff0"; g.fillText("Fit",72+bw,132);
     // kicker
-    g.font="800 38px system-ui, sans-serif"; g.fillStyle="#8fd6a8";
+    g.font="800 38px system-ui, sans-serif"; g.fillStyle="#8faed6";
     g.fillText((o.kick||"").toUpperCase(),72,262);
     // hero number + unit
     g.font="900 190px system-ui, sans-serif"; g.fillStyle="#ffffff";
     var big=String(o.big||""); g.fillText(big,66,478);
-    if(o.unit){ var bw2=g.measureText(big).width; g.font="700 54px system-ui, sans-serif"; g.fillStyle="#9fc4ac"; g.fillText(o.unit, 78+bw2, 478); }
+    if(o.unit){ var bw2=g.measureText(big).width; g.font="700 54px system-ui, sans-serif"; g.fillStyle="#9fafc4"; g.fillText(o.unit, 78+bw2, 478); }
     var y=560;
     if(o.badge){
       g.font="900 46px system-ui, sans-serif";
@@ -35,7 +35,7 @@
       g.fillStyle="#ffffff"; g.fillText(o.badge,110,y+4);
       y+=136;
     } else y+=24;
-    g.font="600 40px system-ui, sans-serif"; g.fillStyle="#cfe3d6";
+    g.font="600 40px system-ui, sans-serif"; g.fillStyle="#cfd8e3";
     (o.lines||[]).forEach(function(ln){
       if(!ln) return;
       while(g.measureText(ln).width > W-144 && ln.length>4) ln=ln.slice(0,-2);
@@ -43,10 +43,10 @@
     });
     // footer — one line, left-aligned, no collisions
     g.fillStyle="rgba(255,255,255,.08)"; g.fillRect(0,H-150,W,150);
-    g.font="800 42px system-ui, sans-serif"; g.fillStyle="#8be9ac";
+    g.font="800 42px system-ui, sans-serif"; g.fillStyle="#8bb4e9";
     g.fillText("MatchFit",72,H-58);
     var fw=g.measureText("MatchFit").width;
-    g.font="600 36px system-ui, sans-serif"; g.fillStyle="#9fc4ac";
+    g.font="600 36px system-ui, sans-serif"; g.fillStyle="#9fafc4";
     g.fillText("· Turn muscle into speed ⚽", 72+fw+18, H-58);
     try{ c.toBlob(function(b){ cb(b); },"image/png"); }catch(e){ cb(null); }
   }

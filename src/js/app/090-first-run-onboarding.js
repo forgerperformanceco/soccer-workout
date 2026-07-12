@@ -189,7 +189,7 @@
             '<div class="ob-seg" id="obGoalYds">'+[10,15,25].map(function(y){
               return '<button type="button" data-v="'+y+'" class="'+(String(ob.goalyds)===String(y)?"sel":"")+'">+'+y+' yds</button>';
             }).join("")+'</div></div>'+
-          '<p class="ob-p" style="font-size:13px;color:#9ccfb0;margin:0">Measure vertical jump with a wall-and-chalk reach or a jump app. Your mission is a goal you chase — the app tracks it against your real numbers.</p>';
+          '<p class="ob-p" style="font-size:13px;color:#9cb2cf;margin:0">Measure vertical jump with a wall-and-chalk reach or a jump app. Your mission is a goal you chase — the app tracks it against your real numbers.</p>';
         nextLabel="Continue →";
       } else if(s===6){
         kicker="Step 6 of 7 · Your foods"; title="What do you actually eat?";

@@ -45,7 +45,7 @@
     function showAt(wrap, clientX){
       var vals=wrap.getAttribute("data-pcv").split("|").map(Number);
       var labs=(wrap.getAttribute("data-pcl")||"").split("|");
-      var unit=wrap.getAttribute("data-pcu")||"", color=wrap.getAttribute("data-pcc")||"#16a34a";
+      var unit=wrap.getAttribute("data-pcu")||"", color=wrap.getAttribute("data-pcc")||"#1653a3";
       var svg=wrap.querySelector("svg"); if(!svg || vals.length<2) return;
       var r=svg.getBoundingClientRect(), W=320,H=104,pad=8;
       var stepX=(W-pad*2)/(vals.length-1);
@@ -125,14 +125,14 @@
     var tests={}; speedTests().forEach(function(t){ if(t.week && (tests[t.week]==null || t.best>tests[t.week])) tests[t.week]=t.best; });
     var ev=eventInfo();
     var segW=46, pad=26, NW=20, width=pad*2+NW*segW, H=118;
-    var colors={ accumulate:"#2f9e5d", intensify:"#e0a33a", deload:"#4d685a", peak:"#f4c542" };
+    var colors={ accumulate:"#2f5f9e", intensify:"#e0a33a", deload:"#4d5968", peak:"#f4c542" };
     var svg='';
     for(var w=1; w<=NW; w++){
       var x=pad+(w-1)*segW, wave=waveFor(w), cx=x+segW/2-3;
       svg+='<rect x="'+(x+2)+'" y="64" width="'+(segW-7)+'" height="16" rx="8" fill="'+colors[wave]+'" opacity="'+(w<wk?'0.95':(w===wk?'1':'0.35'))+'"/>';
-      svg+='<text x="'+cx+'" y="98" text-anchor="middle" font-size="10" fill="#9fc4ac" font-weight="700">'+w+'</text>';
+      svg+='<text x="'+cx+'" y="98" text-anchor="middle" font-size="10" fill="#9fafc4" font-weight="700">'+w+'</text>';
       if(wave==="deload") svg+='<text x="'+cx+'" y="60" text-anchor="middle" font-size="10">🪫</text>';
-      if(tests[w]!=null) svg+='<text x="'+cx+'" y="36" text-anchor="middle" font-size="13">⚽</text><text x="'+cx+'" y="50" text-anchor="middle" font-size="10" fill="#8be9ac" font-weight="800">'+tests[w]+'</text>';
+      if(tests[w]!=null) svg+='<text x="'+cx+'" y="36" text-anchor="middle" font-size="13">⚽</text><text x="'+cx+'" y="50" text-anchor="middle" font-size="10" fill="#8bb4e9" font-weight="800">'+tests[w]+'</text>';
       if(ev && ev.week===w) svg+='<text x="'+cx+'" y="'+(tests[w]!=null?22:36)+'" text-anchor="middle" font-size="14">🏆</text>';
       if(w===wk) svg+='<text x="'+cx+'" y="18" text-anchor="middle" font-size="11" font-weight="900" fill="#ffffff">▼ YOU</text>';
     }
@@ -151,13 +151,13 @@
     return pfCard('season','🗺️ Your season <small>20-week block</small>',
       '<span class="pf-num">Wk '+wk+'/20</span><span class="pf-sub">'+c.sessions+'/'+c.freq+' this wk</span>',
       '<div class="season-scroll"><svg width="'+width+'" height="'+H+'" viewBox="0 0 '+width+' '+H+'">'+svg+'</svg></div>'+
-      '<div class="season-leg"><span><i style="background:#2f9e5d"></i>Build</span><span><i style="background:#e0a33a"></i>Heavy</span>'+
-      '<span><i style="background:#4d685a"></i>Deload</span><span><i style="background:#f4c542"></i>Peak</span><span>⚽ jump test (in)</span>'+(ev&&ev.week?'<span>🏆 your event</span>':'')+'</div>'+
+      '<div class="season-leg"><span><i style="background:#2f5f9e"></i>Build</span><span><i style="background:#e0a33a"></i>Heavy</span>'+
+      '<span><i style="background:#4d5968"></i>Deload</span><span><i style="background:#f4c542"></i>Peak</span><span>⚽ jump test (in)</span>'+(ev&&ev.week?'<span>🏆 your event</span>':'')+'</div>'+
       '<div class="season-foot"><b>Week '+wk+' · '+wave2.label+'.</b> '+wave2.strap+
         (ev ? (ev.week && !ev.past
                 ? ' <br><b>🏆 '+(ev.name||"Your event")+' — week '+ev.week+'.</b> The taper re-anchors to it: weeks '+(ev.week-1)+'–'+ev.week+' peak (volume down, intensity heavy), week '+(ev.week+1)+' recovers.'
                 : (ev.past ? '' : ' <br>🏆 '+(ev.name||"Your event")+' falls outside this 20-week block.'))
-             : ' <br>🏆 Peaking for something? <button type="button" class="stest-link" data-goview="account" style="color:#8be9ac">Set your event date</button> and the taper re-anchors to it.')+
+             : ' <br>🏆 Peaking for something? <button type="button" class="stest-link" data-goview="account" style="color:#8bb4e9">Set your event date</button> and the taper re-anchors to it.')+
       '</div>'+
       '<div class="pc-sec">'+ffTerm('scorecard','🗒️ Weekly Scorecard')+' <small>Wk '+wk+'</small></div>'+
       '<div class="sc-grid">'+scRows.map(function(r){
@@ -284,7 +284,7 @@
       else html += pfCard('speed','⚡ Vertical jump <small>jump test</small>',
         (spNow!=null?'<span class="pf-num">'+spNow+' in</span>':'')+(spF.length>=2?pcDelta(spNow-spBase," in"):""),
         (spNow!=null?'<div class="pc-now">'+spNow+'<span>in</span></div>':'<div class="pc-now muted">—</div>')+
-        (spF.length>=2 ? pcLine(spF,"#16a34a","pcSpeed", spD, " in")
+        (spF.length>=2 ? pcLine(spF,"#1653a3","pcSpeed", spD, " in")
           : '<div class="pc-need">'+(spF.length===1?"One more entry and your jump trend appears.":"Add a vertical jump with <b>＋ Log</b> to start the trend.")+'</div>')+
         (spF.length>=2&&spGain>0
           ? '<div class="pc-payoff">🎯 That’s real vertical you’ve added since your baseline. <span>More hops means more power off the ground.</span></div>'
@@ -313,7 +313,7 @@
           lifts.slice(0,5).map(function(L){
             var d = L.first>0 ? (L.last-L.first)/L.first*100 : null;
             return '<button type="button" class="lr" data-exhist="'+escAttr(L.name)+'"><div class="lr-name">'+L.name+'</div>'+
-              '<div class="lr-spark">'+(L.n>=2?pcMiniSpark(L.series,"#16a34a"):'<span class="lr-one">'+L.n+' set'+(L.n===1?"":"s")+'</span>')+'</div>'+
+              '<div class="lr-spark">'+(L.n>=2?pcMiniSpark(L.series,"#1653a3"):'<span class="lr-one">'+L.n+' set'+(L.n===1?"":"s")+'</span>')+'</div>'+
               '<div class="lr-val">'+Math.round(L.last)+'<small>lb</small>'+(L.n>=2&&d!=null?pcDelta(d,"%"):"")+'</div></button>';
           }).join("")+
           '<div class="pc-foot"><span>tap a lift for its full story</span></div>';

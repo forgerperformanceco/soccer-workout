@@ -18,21 +18,21 @@ let outers = "", seams = "";
 for (let k = 0; k < 5; k++) {
   const a = up + (k * 2 * Math.PI) / 5;
   const ox = CX + 116 * Math.cos(a), oy = CY + 116 * Math.sin(a);
-  outers += `<path d="${path(poly(ox, oy, 34, a + Math.PI))}" fill="#111c15"/>`;
+  outers += `<path d="${path(poly(ox, oy, 34, a + Math.PI))}" fill="#11161c"/>`;
   const vx = CX + 55 * Math.cos(a), vy = CY + 55 * Math.sin(a);   // central vertex
-  seams += `<line x1="${vx.toFixed(1)}" y1="${vy.toFixed(1)}" x2="${ox.toFixed(1)}" y2="${oy.toFixed(1)}" stroke="#111c15" stroke-width="7"/>`;
+  seams += `<line x1="${vx.toFixed(1)}" y1="${vy.toFixed(1)}" x2="${ox.toFixed(1)}" y2="${oy.toFixed(1)}" stroke="#11161c" stroke-width="7"/>`;
 }
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#176236"/>
-      <stop offset="0.65" stop-color="#0b3d22"/>
-      <stop offset="1" stop-color="#19a84e"/>
+      <stop offset="0" stop-color="#173762"/>
+      <stop offset="0.65" stop-color="#0b213d"/>
+      <stop offset="1" stop-color="#1957a8"/>
     </linearGradient>
     <radialGradient id="ball" cx="0.38" cy="0.32" r="0.8">
       <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#dbe4dd"/>
+      <stop offset="1" stop-color="#dbdfe4"/>
     </radialGradient>
     <clipPath id="ballclip"><circle cx="${CX}" cy="${CY}" r="${R}"/></clipPath>
   </defs>
@@ -41,10 +41,10 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" vi
   <circle cx="${CX}" cy="${CY}" r="${R}" fill="url(#ball)"/>
   <g clip-path="url(#ballclip)">
     ${seams}
-    <path d="${path(central)}" fill="#111c15"/>
+    <path d="${path(central)}" fill="#11161c"/>
     ${outers}
   </g>
-  <circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="#0b3d22" stroke-opacity="0.25" stroke-width="6"/>
+  <circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="#0b213d" stroke-opacity="0.25" stroke-width="6"/>
 </svg>
 `;
 writeFileSync("icon.svg", svg);

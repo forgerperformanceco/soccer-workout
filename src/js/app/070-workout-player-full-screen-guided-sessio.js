@@ -190,17 +190,17 @@
     var octNow=ffScore().score||0, dOct=octNow-player.octBefore;
     return '<div class="pl-recap">'+
       '<div class="pl-recap-kick">Session complete</div>'+
-      '<div class="pl-recap-big">'+(vol>0?('<span data-countup="'+vol+'" data-cu-fmt="locale">'+vol.toLocaleString()+'</span><span style="font-size:18px;color:#9fc4ac"> lb moved</span>'):'Work banked 💪')+'</div>'+
+      '<div class="pl-recap-big">'+(vol>0?('<span data-countup="'+vol+'" data-cu-fmt="locale">'+vol.toLocaleString()+'</span><span style="font-size:18px;color:#9fafc4"> lb moved</span>'):'Work banked 💪')+'</div>'+
       prs.map(function(p){ return '<div class="pl-pr">🚀 PR — '+p.name+' e1RM '+p.e1+' lb</div>'; }).join(" ")+
       (firsts.length?'<div class="pl-first">📌 Benchmarks set: '+firsts.join(", ")+'</div>':'')+
       '<div class="pl-statrow">'+
         '<div class="pl-stat"><div class="v" data-countup="'+done+'">'+done+'</div><div class="k">sets logged</div></div>'+
         '<div class="pl-stat"><div class="v">'+mins+'m</div><div class="k">session time</div></div>'+
-        '<div class="pl-stat"><div class="v">'+octNow+(dOct>0?' <small style="color:#8be9ac">▲'+dOct+'</small>':'')+'</div><div class="k">Octane</div></div>'+
+        '<div class="pl-stat"><div class="v">'+octNow+(dOct>0?' <small style="color:#8bb4e9">▲'+dOct+'</small>':'')+'</div><div class="k">Octane</div></div>'+
       '</div>'+
       '<div class="pl-cue" style="text-align:center">'+(prs.length?'Force is the raw material for explosive speed — that PR is power in the bank.':'Consistency is the biggest lever on your Octane. Session banked.')+'</div>'+
       '<textarea class="pl-notes" id="plNote" rows="2" maxlength="240" placeholder="Session notes — sleep, energy, aches… (saved with the workout)">'+lbEsc(player.sess.note||"")+'</textarea>'+
-      '<button class="pl-share" data-pladdlift="1" style="border-color:rgba(255,255,255,.25);color:#dff1e4;">＋ Add one more lift</button>'+
+      '<button class="pl-share" data-pladdlift="1" style="border-color:rgba(255,255,255,.25);color:#dfe7f1;">＋ Add one more lift</button>'+
       '<button class="pl-share" data-plshare="1">'+ffIcon("share",15)+' Share this session</button>'+
       '</div>';
   }
@@ -266,7 +266,7 @@
     r.innerHTML='<div class="pl-top" id="plTop"></div>'+
       '<div class="pl-body" id="plBody"></div>'+
       '<div class="pl-restbar" id="plRestBar" hidden><div class="pl-rest-in">'+
-        '<span class="pl-rest-time">0:00</span><span class="pl-rest-lb" style="font-size:13px;color:#9fc4ac;">Rest</span>'+
+        '<span class="pl-rest-time">0:00</span><span class="pl-rest-lb" style="font-size:13px;color:#9fafc4;">Rest</span>'+
         '<span class="pl-rest-track"><span class="pl-rest-fill" style="width:0%"></span></span>'+
         '<button class="pl-rest-skip" data-plskiprest="1" type="button">Skip</button></div></div>'+
       '<div class="pl-nav"><button class="pl-prev" id="plPrev" data-plprev="1" type="button">‹ Back</button>'+
@@ -735,12 +735,12 @@
     var pct = score==null ? 0 : score, ARC=Math.PI*48, off=ARC*(1-pct/100);
     return '<div class="ffscore-gauge"><svg width="120" height="86" viewBox="0 0 126 90">'+
       '<defs><linearGradient id="ffArc" x1="0" y1="0" x2="1" y2="0">'+
-        '<stop offset="0" stop-color="#2f9e5d"/><stop offset="1" stop-color="#8be9ac"/></linearGradient></defs>'+
+        '<stop offset="0" stop-color="#2f5f9e"/><stop offset="1" stop-color="#8bb4e9"/></linearGradient></defs>'+
       '<path d="M15 66 A48 48 0 0 1 111 66" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="12" stroke-linecap="round"/>'+
       '<path d="M15 66 A48 48 0 0 1 111 66" fill="none" stroke="url(#ffArc)" stroke-width="12" stroke-linecap="round" '+
         'stroke-dasharray="'+ARC.toFixed(1)+'" stroke-dashoffset="'+off.toFixed(1)+'"/>'+
-      '<text x="11" y="86" fill="#9ccfb0" font-size="12" font-weight="800">E</text>'+
-      '<text x="107" y="86" fill="#9ccfb0" font-size="12" font-weight="800">F</text></svg>'+
+      '<text x="11" y="86" fill="#9cb2cf" font-size="12" font-weight="800">E</text>'+
+      '<text x="107" y="86" fill="#9cb2cf" font-size="12" font-weight="800">F</text></svg>'+
       '<div class="num"'+(score==null?'':' data-countup="'+score+'"')+'>'+(score==null?"–":score)+'</div></div>';
   }
   // Kick distance (yards) — the hero outcome. Stored on ff_body entries as `d` so it
@@ -860,13 +860,13 @@
     if(p.key==="speed"){
       var sp=stSpeedHistory();
       return '<div class="fd-tx"><b>'+p.detail+'</b> — vertical-jump trend vs your first entry. Jump is your cleanest read on explosive power.</div>'+
-        (sp.length>=2?('<div class="fd-sparkrow">'+pcMiniSpark(sp,"#8be9ac")+'<span class="n">baseline '+sp[0]+' → now '+sp[sp.length-1]+' in</span></div>'):'')+
+        (sp.length>=2?('<div class="fd-sparkrow">'+pcMiniSpark(sp,"#8bb4e9")+'<span class="n">baseline '+sp[0]+' → now '+sp[sp.length-1]+' in</span></div>'):'')+
         '<button type="button" class="fd-act" data-speedtest="1">🎯 '+(speedTestDue()?'Test due — run it now':'Run a test early')+'</button>';
     }
     if(p.key==="strength"){
       var lifts=bigLiftStats().slice(0,3);
       return '<div class="fd-tx"><b>'+p.detail+'</b> — estimated 1RM on the big lifts, first session vs best. Force is the raw material for speed.</div>'+
-        lifts.map(function(L){ return '<div class="fd-sparkrow">'+(L.n>=2?pcMiniSpark(L.series,"#8be9ac"):'')+'<span class="n">'+L.name+' · '+Math.round(L.last)+' lb</span></div>'; }).join("")+
+        lifts.map(function(L){ return '<div class="fd-sparkrow">'+(L.n>=2?pcMiniSpark(L.series,"#8bb4e9"):'')+'<span class="n">'+L.name+' · '+Math.round(L.last)+' lb</span></div>'; }).join("")+
         '<button type="button" class="fd-act" data-goview="plan">Go lift ›</button>';
     }
     if(p.key==="p2w"){
@@ -914,7 +914,7 @@
       return row;
     }).join("");
     return '<div class="ffscore">'+top+'<div class="ffscore-bars">'+bars+'</div>'+
-      '<div style="margin-top:8px;font-size:12px;color:#9fc4ac;">Tap a pillar to see what drives it — and the fastest way to move it.</div>'+
+      '<div style="margin-top:8px;font-size:12px;color:#9fafc4;">Tap a pillar to see what drives it — and the fastest way to move it.</div>'+
       '<button type="button" class="ffscore-drives" data-pftoggle="pillars">Hide the breakdown <span class="pf-arr">⌄</span></button></div>';
   }
 

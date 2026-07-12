@@ -128,13 +128,13 @@ def transform_rule(decls):
 #  - the two rules that use --green-700 as a button BACKGROUND keep light-mode green
 CORE = [
     (':root',
-     '--paper:#0d1712; --card:#141f18; --ink:#e4efe6; --muted:#96ab9d; --line:#28402f; '
-     '--green-800:#a5dcb8; --green-700:#7ccd9c; --sand:#332c18; --sand-dark:#584c28; '
+     '--paper:#0d1117; --card:#14191f; --ink:#e4e9ef; --muted:#969fab; --line:#283240; '
+     '--green-800:#a5bddc; --green-700:#7c9fcd; --sand:#332c18; --sand-dark:#584c28; '
      '--shadow:0 12px 34px rgba(0,0,0,.45); --shadow-sm:0 2px 8px rgba(0,0,0,.35); color-scheme:dark;'),
-    ('input, select, textarea', 'background:#101b14; color:var(--ink);'),
-    ('.logbtn:hover', 'background:#15803d;'),
-    ('.modal-foot button', 'background:#15803d;'),
-    ('.mobile-tabbar', 'background:rgba(16,24,19,.94); border-top:1px solid #28402f; box-shadow:0 -4px 20px rgba(0,0,0,.45);'),
+    ('input, select, textarea', 'background:#10151b; color:var(--ink);'),
+    ('.logbtn:hover', 'background:#154380;'),
+    ('.modal-foot button', 'background:#154380;'),
+    ('.mobile-tabbar', 'background:rgba(16, 19, 24, .94); border-top:1px solid #283240; box-shadow:0 -4px 20px rgba(0,0,0,.45);'),
 ]
 
 def prefix_sel(sel, wrapper):

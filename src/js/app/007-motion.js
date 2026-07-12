@@ -87,7 +87,7 @@
       c.width=innerWidth*dpr; c.height=innerHeight*dpr;
       document.body.appendChild(c);
       var ctx=c.getContext("2d"); ctx.scale(dpr,dpr);
-      var colors=["#2f9e5d","#8be9ac","#f7c948","#ffffff","#14532d"];
+      var colors=["#2f5f9e","#8bb4e9","#f7c948","#ffffff","#142f53"];
       var parts=[], N=90;
       for(var i=0;i<N;i++){
         parts.push({ x:innerWidth/2, y:innerHeight*0.42,
