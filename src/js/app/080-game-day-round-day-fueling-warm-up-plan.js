@@ -1,8 +1,8 @@
-  /* ===================== GAME DAY — round-day fueling + warm-up plan =====================
-     Golf is a 4–5 hr endurance event. Given a tee time, build a timed plan: pre-round
-     meal, top-off, a golf-specific first-tee warm-up (mobility + speed primer), on-course
-     fueling cadence, the turn snack, and post-round refuel. This is where the training
-     and the nutrition moat meet the actual round. */
+  /* ===================== MATCH DAY — match-day fueling + warm-up plan =====================
+     A match is a 90-minute high-intensity event. Given a kickoff time, build a timed plan:
+     pre-match meal, top-off, a soccer-specific pre-match warm-up (mobility + speed primer),
+     half-time fuel, and post-match recovery/refuel. This is where the training
+     and the nutrition moat meet the actual match. */
   function gdState(){ var g=lsGet("ff_gameday", null); return g || { teeTime:"09:00", holes:18, transport:"walk" }; }
   function gdSave(g){ lsSet("ff_gameday", g); }
   function parseHM(s){ var m=/^(\d{1,2}):(\d{2})$/.exec(s||""); return m ? (+m[1])*60+(+m[2]) : null; }
@@ -14,37 +14,40 @@
   function renderGameDay(){
     var el=$("gamedayBody"); if(!el) return;
     var g=gdState(), T=parseHM(g.teeTime);
-    var dur = g.holes===9 ? (g.transport==="walk"?135:120) : (g.transport==="walk"?270:240);
+    // Match length drives the timeline (half-time at dur/2, full-time at dur).
+    // A full match ≈ 90 min of play; "Half" ≈ a shorter youth game / a single half.
+    // Role (starter/sub) doesn't change the clock, so it no longer scales dur.
+    var dur = g.holes===9 ? 50 : 90;
     function seg(cur,val,lbl,attr){ return '<button class="gd-seg-btn'+(String(cur)===String(val)?" on":"")+'" data-'+attr+'="'+val+'">'+lbl+'</button>'; }
     var html=''+
       '<div class="gd-top"><button class="gd-back" data-gdback="1">‹ Home</button></div>'+
-      '<div class="gd-hero"><div class="gd-hero-t">⛳ Game Day</div>'+
-        '<div class="gd-hero-sub">Golf is a <b>4–5 hour endurance event.</b> Most golfers fade on the back nine from low fuel and dehydration — not lack of skill. Plan the round and finish as strong as you start.</div></div>'+
+      '<div class="gd-hero"><div class="gd-hero-t">⚽ Match Day</div>'+
+        '<div class="gd-hero-sub">A match is <b>90 minutes of high-intensity running.</b> Most players fade in the second half from low fuel and dehydration — not lack of skill. Plan your match day and finish as strong as you start.</div></div>'+
       ((typeof roundToday==="function"&&roundToday())
-        ? '<button type="button" class="gd-loground done" data-roundlog="1">✓ Round banked — tap to edit</button>'
-        : '<button type="button" class="gd-loground" data-roundlog="1">🏁 Just played? Log your round — 20 seconds</button>')+
+        ? '<button type="button" class="gd-loground done" data-roundlog="1">✓ Match banked — tap to edit</button>'
+        : '<button type="button" class="gd-loground" data-roundlog="1">🏁 Just played? Log your match — 20 seconds</button>')+
       '<div class="gd-controls">'+
-        '<label class="gd-field"><span>Tee time</span><input type="time" id="gdTee" value="'+escAttr(g.teeTime||"")+'" /></label>'+
-        '<div class="gd-field"><span>Holes</span><div class="gd-seg">'+seg(g.holes,9,"9","gdholes")+seg(g.holes,18,"18","gdholes")+'</div></div>'+
-        '<div class="gd-field"><span>Getting around</span><div class="gd-seg">'+seg(g.transport,"walk","🚶 Walk","gdtransport")+seg(g.transport,"ride","🛺 Ride","gdtransport")+'</div></div>'+
+        '<label class="gd-field"><span>Kickoff</span><input type="time" id="gdTee" value="'+escAttr(g.teeTime||"")+'" /></label>'+
+        '<div class="gd-field"><span>Match length</span><div class="gd-seg">'+seg(g.holes,9,"Half","gdholes")+seg(g.holes,18,"Full","gdholes")+'</div></div>'+
+        '<div class="gd-field"><span>Your role</span><div class="gd-seg">'+seg(g.transport,"walk","🏃 Starter","gdtransport")+seg(g.transport,"ride","🔄 Sub","gdtransport")+'</div></div>'+
       '</div>';
-    if(T==null){ el.innerHTML=html+'<div class="gd-empty">Set your tee time above to build your timed plan.</div>'; return; }
+    if(T==null){ el.innerHTML=html+'<div class="gd-empty">Set your kickoff time above to build your timed plan.</div>'; return; }
     html+='<div class="gd-timeline">';
-    html+=gdCard(fmtMin(T-150),"🍳","Pre-round meal","A real meal — carbs + lean protein, light on fat. Top off glycogen: oats + eggs + fruit, or rice + chicken. Drink <b>16–20 oz water</b>.");
+    html+=gdCard(fmtMin(T-150),"🍳","Pre-match meal","A real meal — carbs + lean protein, light on fat. Top off glycogen: oats + eggs + fruit, or rice + chicken. Drink <b>16–20 oz water</b>.");
     html+=gdCard(fmtMin(T-40),"🍌","Top-off snack","Fast carbs + water — a banana, a few dates, or a Rice Krispies treat (~30g carbs). Sip <b>8–12 oz</b>.");
-    var wu=["Leg swings|×10/side","Open-book T-spine|×8/side","Trunk rotations|×10/side","Hip 90/90 switches|×6/side","Band or club rotations|×10/side","Build-up swings|15 · ramp 50→100%","Overspeed primer swings|5–8 at MAX"];
+    var wu=["Leg swings|×10/side","Open-book T-spine|×8/side","Trunk rotations|×10/side","Hip 90/90 switches|×6/side","Band rotations|×10/side","Build-up strides|15 · ramp 50→100%","Sprint primer|5–8 at MAX"];
     var wuHtml='<div class="gd-warm">'+wu.map(function(x){ var p=x.split("|"); return '<button class="wu-row" type="button" data-wu="1"><span class="wu-move">'+p[0]+'</span><span class="wu-dose">'+p[1]+'</span></button>'; }).join("")+'</div>';
-    html+=gdCard(fmtMin(T-20),"🔥","First-tee warm-up","~15 min — mobilize, then prime your speed so the opening drive isn’t cold. Tap to check off:", wuHtml);
-    html+=gdCard(fmtMin(T),"⛳","Tee off — hole 1","You’re fueled and warm. Game on.");
-    html+=gdCard("During","🥤","On the course","<b>Every ~3 holes:</b> a few sips of water + a bite of fast carb (dates, fruit, chews) — don’t wait until you’re hungry or thirsty.<br><b>Hydration:</b> ~1 bottle (16–20 oz) every 6 holes; more when it’s hot — add electrolytes.");
-    html+=gdCard(fmtMin(T+dur/2),"🥪","At the turn (hole "+Math.round(g.holes/2)+")","A real snack — ½ turkey sandwich, jerky + fruit, or a protein bar (~20–30g carbs + protein). This is what keeps your "+(g.holes===9?"finish":"back nine")+" strong.");
-    html+=gdCard(fmtMin(T+dur),"🏁","Finish","Strong all "+g.holes+". Nice.");
-    html+=gdCard(fmtMin(T+dur+30),"💪","Refuel + log","Within ~45 min: a solid protein + carb meal — a round is real work, refuel it. Then log your round — and a 7-iron speed test if you hit a launch monitor.");
+    html+=gdCard(fmtMin(T-20),"🔥","Pre-match warm-up","~15 min — mobilize, then prime your speed so your first sprint isn’t cold. Tap to check off:", wuHtml);
+    html+=gdCard(fmtMin(T),"⚽","Kickoff","You’re fueled and warm. Game on.");
+    html+=gdCard("During","🥤","On the pitch","<b>At every break in play:</b> a few sips of water — don’t wait until you’re thirsty.<br><b>Hydration:</b> ~1 bottle (16–20 oz) across the match; more when it’s hot — add electrolytes.");
+    html+=gdCard(fmtMin(T+dur/2),"🥪","Half-time","Fast carbs — a banana, dates, a gel, or a few orange slices (~20–30g carbs). This is what keeps your "+(g.holes===9?"finish":"second half")+" strong.");
+    html+=gdCard(fmtMin(T+dur),"🏁","Full-time","Strong to the final whistle. Nice.");
+    html+=gdCard(fmtMin(T+dur+30),"💪","Refuel + log","Within ~45 min: a solid protein + carb meal — a match is real work, refuel it. Then log your match — and a jump test if you took one.");
     html+='</div>';
     html+='<div class="gd-pack"><div class="gd-pack-h">🎒 Pack list</div><ul>'+
       '<li>'+(g.holes===18?"2–3":"1–2")+' bottles of water (+ electrolytes if hot)</li>'+
       '<li>Fast carbs: banana, dates, fruit chews/gels, a Rice Krispies treat</li>'+
-      '<li>Turn snack: ½ sandwich, jerky, or a protein bar</li></ul></div>';
+      '<li>Half-time fuel: a banana, dates, or an energy gel</li></ul></div>';
     el.innerHTML=html;
   }
 
@@ -75,9 +78,9 @@
       var day=slots[(dop-1+o)%7]||{};
       var rest = day.type==="rest";
       list.push({ id:100+o,
-        title: rest ? "Recovery day 🌱" : "Time to train ⛳",
+        title: rest ? "Recovery day 🌱" : "Time to train ⚽",
         body: rest ? "Walk, mobility, foam roll — growth happens today."
-                   : ((day.name||"Your session").replace(/^Day \d+ — /,"")+" · Week "+wk+" — your yards are waiting."),
+                   : ((day.name||"Your session").replace(/^Day \d+ — /,"")+" · Week "+wk+" — your gains are waiting."),
         schedule:{ at:d, allowWhileIdle:true } });
     }
     if(list.length){ try{ await LN.schedule({ notifications:list }); }catch(e){} }
@@ -87,7 +90,7 @@
     if(ffNotifOn()){ lsSet("ff_notif", false); await ffNotifReschedule(); return false; }
     try{
       var p=await LN.requestPermissions();
-      if(!p || p.display!=="granted"){ alert("Notifications are blocked — allow them in your phone's settings for Yardsmith."); return false; }
+      if(!p || p.display!=="granted"){ alert("Notifications are blocked — allow them in your phone's settings for MatchFit."); return false; }
     }catch(e){ return false; }
     lsSet("ff_notif", true); await ffNotifReschedule(); return true;
   }
@@ -133,9 +136,9 @@
       var day=slots[(dop-1+o)%7]||{};
       var rest=day.type==="rest";
       out.push({ d: ffLocalISO(d),
-        title: rest ? "Recovery day 🌱" : "Time to train ⛳",
+        title: rest ? "Recovery day 🌱" : "Time to train ⚽",
         body: rest ? "Walk, mobility, foam roll — growth happens today."
-                   : ((day.name||"Your session").replace(/^Day \d+ — /,"")+" · Week "+wk+" — your yards are waiting.") });
+                   : ((day.name||"Your session").replace(/^Day \d+ — /,"")+" · Week "+wk+" — your gains are waiting.") });
     }
     return out;
   }
@@ -210,9 +213,9 @@
       if(lsGet("ff_notif_lastday","")===todayStr()) return;  // already nudged today
       lsSet("ff_notif_lastday", todayStr());
       var dop=dayOfPlan(), day=(stripDays()[(dop||1)-1])||{}, rest=day.type==="rest";
-      var title = rest ? "Recovery day 🌱" : "Time to train ⛳";
+      var title = rest ? "Recovery day 🌱" : "Time to train ⚽";
       var bodyTxt = rest ? "Walk, mobility, foam roll — growth happens today."
-        : ((day.name||"Your session").replace(/^Day \d+ — /,"")+" · Week "+curWeek()+" — your yards are waiting.");
+        : ((day.name||"Your session").replace(/^Day \d+ — /,"")+" · Week "+curWeek()+" — your gains are waiting.");
       navigator.serviceWorker.getRegistration().then(function(reg){
         if(reg && reg.showNotification) reg.showNotification(title, { body:bodyTxt, icon:"icon-192.png", badge:"icon-192.png", tag:"ff-daily" });
         else new Notification(title, { body:bodyTxt, icon:"icon-192.png" });
@@ -282,8 +285,8 @@
         try{ blob[k]=JSON.parse(localStorage.getItem(k)); }catch(e){}
       }
     }catch(e){}
-    var out={ app:"Yardsmith", kind:"backup", version:1, exported:new Date().toISOString(), data:blob };
-    var name="yardsmith-backup-"+new Date().toISOString().slice(0,10)+".json";
+    var out={ app:"MatchFit", kind:"backup", version:1, exported:new Date().toISOString(), data:blob };
+    var name="matchfit-backup-"+new Date().toISOString().slice(0,10)+".json";
     var payload=JSON.stringify(out);
     try{
       if(ffIsIOS() && navigator.canShare && window.File){
@@ -308,7 +311,7 @@
         var data=obj && (obj.kind==="backup" ? obj.data : obj);   // accept a raw key dump too
         var looksRight=data && typeof data==="object" &&
           Object.keys(data).some(function(k){ return k==="fairwayfuel"||k.indexOf("ff_")===0; });
-        if(!looksRight){ alert("That file doesn't look like a Yardsmith backup."); return; }
+        if(!looksRight){ alert("That file doesn't look like a MatchFit backup."); return; }
         var when=(obj&&obj.exported)?(" from "+String(obj.exported).slice(0,10)):"";
         if(!confirm("Restore the backup"+when+"?\n\nThis replaces the data on this device with the file's contents."+
           ((window.FF&&window.FF.user)?" It then syncs to your account (workout history merges, it isn't lost).":""))) return;
@@ -361,7 +364,7 @@
     var user = window.FF && window.FF.user;
     var html='';
     if(user){
-      var email=user.email||'your account', initial=(email[0]||'⛳').toUpperCase();
+      var email=user.email||'your account', initial=(email[0]||'⚽').toUpperCase();
       html+='<div class="acct-card hero"><div class="acct-id"><div class="acct-ava">'+initial+'</div>'+
         '<div class="acct-idtext"><div class="acct-email">'+email+'</div>'+
         ffSyncLine()+'</div></div>'+
@@ -379,11 +382,11 @@
           '<p class="acct-p">Get the full-screen app: tap the <b>Share</b> icon (□ with ↑) in Safari, then <b>“Add to Home Screen.”</b> It opens like a native app and works offline.</p></div>';
       } else if(ffDeferredPrompt){
         html+='<div class="acct-card"><div class="acct-head">📲 Install the app</div>'+
-          '<p class="acct-p">Add Yardsmith to your home screen — full-screen, offline, one tap away.</p>'+
+          '<p class="acct-p">Add MatchFit to your home screen — full-screen, offline, one tap away.</p>'+
           '<button class="acct-btn" id="acctInstall">Install app</button></div>';
       } else {
         html+='<div class="acct-card"><div class="acct-head">📲 Install the app</div>'+
-          '<p class="acct-p">In your browser menu, tap <b>“Install app”</b> / <b>“Add to Home Screen”</b> to run Yardsmith full-screen and offline.</p></div>';
+          '<p class="acct-p">In your browser menu, tap <b>“Install app”</b> / <b>“Add to Home Screen”</b> to run MatchFit full-screen and offline.</p></div>';
       }
     }
     if(ffNotifPlugin()){
@@ -400,7 +403,7 @@
         (pushLive ? '<b>Delivered even when the app is closed.</b>'
          : (pushReady && user ? 'Delivered even when the app is closed.'
          : (pushReady ? '<b>Sign in</b> and reminders land even when the app is closed; signed out they only fire while the app is open.'
-                      : 'On the web they fire while Yardsmith is open in a tab or installed.')))+'</p>'+
+                      : 'On the web they fire while MatchFit is open in a tab or installed.')))+'</p>'+
         '<button class="acct-btn'+(nonW?' ghost':'')+'" id="acctNotifWeb">'+(nonW?"Reminders on — tap to turn off":"Turn on reminders")+'</button></div>';
     }
     var curTheme=ffTheme();
@@ -417,13 +420,13 @@
         '</div><button class="acct-btn ghost" id="acctEdit">Edit my numbers</button>'+
         '<button class="acct-btn ghost" id="acctSetup">↻ Re-run guided setup</button></div>';
     }
-    // Training setup — the three golf-plan levers, all tap-to-change, in one place
+    // Training setup — the three training-plan levers, all tap-to-change, in one place
     // (previously scattered: mission here, days in the Train fold, time in the calculator).
     var gy=goalYds();
     var curFreq=(typeof planState!=="undefined" && planState.freq)||((prof&&prof.freq)||4);
     var curWk=(typeof state!=="undefined" && state.workout)||((prof&&prof.workout)||"morning");
     html+='<div class="acct-card"><div class="acct-head">🎯 Your training setup</div>'+
-      '<div class="acct-set"><div class="acct-set-lbl">Distance mission <small>yards to add in 20 weeks</small></div>'+
+      '<div class="acct-set"><div class="acct-set-lbl">Athletic mission <small>how hard to push over 20 weeks</small></div>'+
         '<div class="goal-chips" id="acctGoalChips">'+[5,10,15,20,25,30].map(function(y){
           return '<button type="button" data-gy="'+y+'" class="'+(gy===y?'on':'')+'">+'+y+'</button>'; }).join("")+'</div></div>'+
       '<div class="acct-set"><div class="acct-set-lbl">Training days / week <small>re-plans your week</small></div>'+
@@ -437,7 +440,7 @@
         return '<div class="acct-set"><div class="acct-set-lbl">🏆 Big event <small>the taper re-anchors to peak for it</small></div>'+
           '<div class="ev-grid">'+
             '<label class="ev-f"><span>Date</span><input type="date" id="acctEvDate" value="'+escAttr(ev?ev.date:"")+'" /></label>'+
-            '<label class="ev-f"><span>Name <em>(optional)</em></span><input type="text" id="acctEvName" placeholder="Club champs, member-guest…" maxlength="40" value="'+escAttr(ev?ev.name:"")+'" /></label>'+
+            '<label class="ev-f"><span>Name <em>(optional)</em></span><input type="text" id="acctEvName" placeholder="Big match, tournament, trial…" maxlength="40" value="'+escAttr(ev?ev.name:"")+'" /></label>'+
           '</div>'+
           (ev && ev.week && !ev.past ? '<div class="ev-note">🏆 Lands in <b>week '+ev.week+'</b> — weeks <b>'+(ev.week-1)+'–'+ev.week+'</b> become your peak, week '+(ev.week+1)+' recovers.</div>'
            : (ev && ev.past ? '<div class="ev-note">That date has passed — set your next one, or clear it.</div>'
@@ -450,13 +453,13 @@
     var lmA=(typeof lastMob==="function")?lastMob():null;
     html+='<div class="acct-card"><div class="acct-head">🧭 Mobility screen</div>'+
       '<p class="acct-p">'+(lmA
-        ? ('Last screen: <b>'+lmA.score+'/100</b> · '+lmA.date+'. Re-screen every 4 weeks — it keeps the muscle you’re adding from costing you rotation.')
+        ? ('Last screen: <b>'+lmA.score+'/100</b> · '+lmA.date+'. Re-screen every 4 weeks — it keeps the muscle you’re adding from costing you speed and agility.')
         : 'A 3-move self-check (~3 min, no gear): trunk rotation, hips, deep squat. It becomes the 5th pillar of your Octane and tunes your warm-ups to what’s tight.')+'</p>'+
       '<button class="acct-btn ghost" data-mobscreen="1">'+(lmA?'↻ Re-run the screen':'Take the screen')+'</button></div>';
     html+='<div class="acct-card"><div class="acct-head">💾 Backup &amp; export</div>'+
       '<p class="acct-p">'+(user
-        ? 'Your data syncs to your account — a downloaded copy is your belt-and-suspenders. Every workout, weigh-in, round and setting in one file you own.'
-        : 'Your data lives only on this device. Download a copy — every workout, weigh-in, round and setting in one file — so a lost phone can’t take your history with it.')+'</p>'+
+        ? 'Your data syncs to your account — a downloaded copy is your belt-and-suspenders. Every workout, weigh-in, match and setting in one file you own.'
+        : 'Your data lives only on this device. Download a copy — every workout, weigh-in, match and setting in one file — so a lost phone can’t take your history with it.')+'</p>'+
       '<button class="acct-btn ghost" id="acctExport">⬇ Export my data</button>'+
       '<button class="acct-btn ghost" id="acctImport">Restore from a backup</button></div>';
     html+='<div class="acct-card"><div class="acct-head">🍽️ Your favorite foods</div>'+
@@ -466,40 +469,40 @@
       '<p class="acct-p">You’re on build <b>'+lbEsc(window.FF_BUILD||"—")+'</b>. The app updates itself in the background, but if the home-screen version ever looks stuck on an old layout, force a clean reload — it clears the offline cache and pulls the newest build. Your data stays put.</p>'+
       '<button class="acct-btn ghost" id="acctForceUpdate">↻ Force refresh to the latest</button></div>';
     html+='<div class="acct-card"><div class="acct-head">↺ Start the plan over</div>'+
-      '<p class="acct-p">Clears your plan start date and logged workouts so the plan resets to week 1. Your bodyweight &amp; 7-iron history and your calculator stay put.</p>'+
+      '<p class="acct-p">Clears your plan start date and logged workouts so the plan resets to week 1. Your bodyweight &amp; jump history and your calculator stay put.</p>'+
       '<button class="acct-btn danger" id="acctResetPlan">↺ Reset plan</button></div>';
     html+='<div class="acct-card"><div class="acct-head">Show me around</div>'+
-      '<p class="acct-p">The system in one picture, every Yardsmith term in plain English, and the tab-by-tab tips — whenever you want a refresher.</p>'+
-      '<button class="acct-btn ghost" data-ffloop="1">🔁 How Yardsmith works</button>'+
+      '<p class="acct-p">The system in one picture, every MatchFit term in plain English, and the tab-by-tab tips — whenever you want a refresher.</p>'+
+      '<button class="acct-btn ghost" data-ffloop="1">🔁 How MatchFit works</button>'+
       '<button class="acct-btn ghost" data-termall="1">📖 What the terms mean</button>'+
       '<button class="acct-btn ghost" id="acctReplayTips">↻ Replay the tips</button></div>';
     if(user){
       html+='<div class="acct-card"><div class="acct-head">⚠️ Delete account</div>'+
-        '<p class="acct-p">Permanently delete your account and <b>all</b> synced data — workouts, bodyweight &amp; 7-iron history, Octane and any leaderboard entry. This can’t be undone.</p>'+
+        '<p class="acct-p">Permanently delete your account and <b>all</b> synced data — workouts, bodyweight &amp; jump history, Octane and any leaderboard entry. This can’t be undone.</p>'+
         '<button class="acct-btn danger" id="acctDelete">Delete my account</button></div>';
     }
     // Read-once reassurance lives at the bottom — it never outranks the settings.
-    html+='<div class="acct-card"><div class="acct-head">⛳ Full access — unlocked</div>'+
+    html+='<div class="acct-card"><div class="acct-head">⚽ Full access — unlocked</div>'+
       '<p class="acct-p">You’ve got everything: AI coaching, the full training plan, macro tuning, progress tracking and the leaderboard. No paywall.</p>'+
       '<div class="acct-plan">Plan: <b>Full access</b> · free</div></div>';
     html+='<div class="acct-links">'+
-      '<a href="mailto:bobbydenisclay@gmail.com?subject=Yardsmith%20feedback">✉ Send feedback</a>'+
+      '<a href="mailto:bobbydenisclay@gmail.com?subject=MatchFit%20feedback">✉ Send feedback</a>'+
       '<span>·</span>'+
       '<a href="privacy.html">Privacy</a></div>';
-    html+='<div class="acct-foot">Yardsmith · installs &amp; works offline<br>Evidence-based starting points — not medical advice.</div>';
+    html+='<div class="acct-foot">MatchFit · installs &amp; works offline<br>Evidence-based starting points — not medical advice.</div>';
     el.innerHTML=html;
     var rt=$("acctReplayTips"); if(rt) rt.onclick=function(){
       lsSet("ff_tips_seen", []); try{ persist(); }catch(e){}
       setView("dash");
     };
     var rp=$("acctResetPlan"); if(rp) rp.onclick=function(){
-      if(confirm("Reset your training plan? This clears your start date and logged workouts so you can start fresh. (Your bodyweight & 7-iron history and your calculator stay.)")) resetPlanFull();
+      if(confirm("Reset your training plan? This clears your start date and logged workouts so you can start fresh. (Your bodyweight & jump history and your calculator stay.)")) resetPlanFull();
     };
     var si=$("acctSignIn"); if(si) si.onclick=function(){ if(window.FF&&window.FF.signIn) window.FF.signIn(); else alert("Sign-in needs an internet connection."); };
     var so=$("acctSignOut"); if(so) so.onclick=function(){ if(window.FF&&window.FF.signOut) window.FF.signOut(); };
     var da=$("acctDelete"); if(da) da.onclick=function(){
       if(!(window.FF&&window.FF.deleteAccount)){ alert("Deleting your account needs an internet connection. Reconnect and try again."); return; }
-      if(!confirm("Permanently delete your Yardsmith account and ALL your data — workouts, bodyweight & 7-iron history, Octane and any leaderboard entry?\n\nThis cannot be undone.")) return;
+      if(!confirm("Permanently delete your MatchFit account and ALL your data — workouts, bodyweight & jump history, Octane and any leaderboard entry?\n\nThis cannot be undone.")) return;
       if(!confirm("Are you absolutely sure? There is no way to recover this account or its data.")) return;
       da.disabled=true; da.textContent="Deleting…";
       window.FF.deleteAccount().then(function(r){
@@ -562,7 +565,7 @@
     };
   }
 
-  /* ----- Progress (bodyweight + clubhead speed) ----- */
+  /* ----- Progress (bodyweight + sprint speed) ----- */
   function sparkline(vals){
     var pts=vals.filter(function(v){ return v!=null && !isNaN(v); });
     if(pts.length<2) return "";

@@ -43,9 +43,9 @@
     function close(){ document.body.style.overflow=""; root.remove(); }
 
     var GOAL_CARDS=[
-      {v:"leanbulk", ic:"🏗️", t:"Lean Bulk", tag:"+10%", d:"Slow, quality mass — add power and keep your swing mobile. Best default."},
-      {v:"bulk", ic:"💪", t:"Bulk", tag:"+20%", d:"Aggressive off-season size & strength to max out speed potential."},
-      {v:"maintain", ic:"⛳", t:"In-Season", tag:"Maintain", d:"Hold your build & energy through a tournament stretch."},
+      {v:"leanbulk", ic:"🏗️", t:"Lean Bulk", tag:"+10%", d:"Slow, quality muscle — add power and stay fast and mobile. Best default."},
+      {v:"bulk", ic:"💪", t:"Bulk", tag:"+20%", d:"Aggressive off-season size & strength to build a bigger engine."},
+      {v:"maintain", ic:"⚽", t:"In-Season", tag:"Maintain", d:"Hold your muscle & energy through a match-packed stretch."},
       {v:"cut", ic:"🔥", t:"Lean Out", tag:"−20%", d:"Drop fat, protect muscle — better power-to-weight = more speed."}
     ];
     var EQ_CARDS=[
@@ -131,10 +131,10 @@
       if(s===0){
         // Lean welcome — they already installed/opened the app; don't re-pitch it.
         // One hook, one promise, straight into the questions ("under a minute" starts now).
-        body='<div class="ob-kicker"><span class="ball"></span> The Golfer’s Mass &amp; Speed System</div>'+
-          '<div class="ob-brand">Yard<span class="em">smith</span></div>'+
-          '<div class="ob-hook">Turn muscle<br>into <span class="em">distance</span>.</div>'+
-          '<p class="ob-p">Six quick questions dial your <b>fuel, 20-week plan and yardage mission</b> to you. Under a minute — let’s go.</p>';
+        body='<div class="ob-kicker"><span class="ball"></span> The Soccer Player’s Muscle &amp; Speed System</div>'+
+          '<div class="ob-brand">Match<span class="em">Fit</span></div>'+
+          '<div class="ob-hook">Turn muscle<br>into <span class="em">speed</span>.</div>'+
+          '<p class="ob-p">Six quick questions dial your <b>fuel, 20-week plan and goals</b> to you. Under a minute — let’s go.</p>';
         nextLabel="Build my plan →";
       } else if(s===1){
         kicker="Step 1 of 7 · Goal"; title="What are you chasing right now?";
@@ -160,9 +160,9 @@
       } else if(s===3){
         kicker="Step 3 of 7 · Training"; title="How you train";
         body='<div class="ob-field"><label>Activity level</label><select class="ob-select" id="obAct">'+
-            [["1.2","Sedentary — desk job, little exercise"],["1.375","Light — range/play + light lifting"],
-             ["1.55","Moderate — gym 3–5×/wk + golf"],["1.725","Very Active — hard training 6–7×/wk, walking 18s"],
-             ["1.9","Athlete — 2-a-days, walking + speed work"]].map(function(o){
+            [["1.2","Sedentary — desk job, little exercise"],["1.375","Light — training/play + light lifting"],
+             ["1.55","Moderate — gym 3–5×/wk + team training"],["1.725","Very Active — hard training 6–7×/wk + matches"],
+             ["1.9","Athlete — 2-a-days, training + speed work"]].map(function(o){
               return '<option value="'+o[0]+'"'+(ob.activity===o[0]?" selected":"")+'>'+o[1]+'</option>'; }).join("")+'</select></div>'+
           '<div class="ob-field"><label>When do you usually train?</label><div class="ob-seg" id="obWk">'+
             [["morning","Morning"],["midday","Midday"],["afternoon","Afternoon"],["evening","Evening"]].map(function(o){
@@ -181,15 +181,15 @@
       } else if(s===5){
         kicker="Step 5 of 7 · Baseline"; title="Your starting line";
         body='<p class="ob-p" style="margin-top:-4px">Set your starting numbers so you can watch them climb. Add either — or skip and log later.</p>'+
-          '<div class="ob-field"><label>Driver carry (yds) — your headline distance</label>'+
-            '<input class="ob-in" id="obDrive" type="number" inputmode="decimal" placeholder="e.g. '+ffBench(ob.sex, ob.age).drive+'" value="'+ob.drive+'" /></div>'+
-          '<div class="ob-field"><label>7-iron clubhead speed (mph)</label>'+
+          '<div class="ob-field"><label>Vertical jump (in) — your headline power number</label>'+
             '<input class="ob-in" id="obSpeed" type="number" inputmode="decimal" placeholder="e.g. '+ffBench(ob.sex, ob.age).seven+'" value="'+ob.speed+'" /></div>'+
-          '<div class="ob-field"><label>Your mission — yards to add over the 20 weeks</label>'+
+          '<div class="ob-field"><label>Longest kick (yds)</label>'+
+            '<input class="ob-in" id="obDrive" type="number" inputmode="decimal" placeholder="e.g. '+ffBench(ob.sex, ob.age).drive+'" value="'+ob.drive+'" /></div>'+
+          '<div class="ob-field"><label>Your mission — yards to add to your kick over the 20 weeks</label>'+
             '<div class="ob-seg" id="obGoalYds">'+[10,15,25].map(function(y){
               return '<button type="button" data-v="'+y+'" class="'+(String(ob.goalyds)===String(y)?"sel":"")+'">+'+y+' yds</button>';
             }).join("")+'</div></div>'+
-          '<p class="ob-p" style="font-size:13px;color:#9ccfb0;margin:0">A launch monitor or an on-course guess both work. Your mission is a goal you chase — the app tracks it against your real drives.</p>';
+          '<p class="ob-p" style="font-size:13px;color:#9ccfb0;margin:0">Measure vertical jump with a wall-and-chalk reach or a jump app. Your mission is a goal you chase — the app tracks it against your real numbers.</p>';
         nextLabel="Continue →";
       } else if(s===6){
         kicker="Step 6 of 7 · Your foods"; title="What do you actually eat?";
@@ -203,7 +203,7 @@
             '<div class="ob-sumv"><div class="v">'+(t?t.kcal:"—")+'</div><div class="k">kcal / day</div></div>'+
             '<div class="ob-sumv"><div class="v">'+(t?t.proteinG:"—")+'<small>g</small></div><div class="k">protein</div></div>'+
             '<div class="ob-sumv"><div class="v">'+(t?t.carbG:"—")+'<small>g</small></div><div class="k">carbs</div></div></div>'+
-          '<p class="ob-p">That’s your daily fuel for <b>'+((GOALS[ob.goal]&&GOALS[ob.goal].label)||"your goal")+'</b>. Your 20-week plan is aimed at <b>+'+(parseInt(ob.goalyds,10)||15)+' yds</b> — tracked against your real drives.</p>'+
+          '<p class="ob-p">That’s your daily fuel for <b>'+((GOALS[ob.goal]&&GOALS[ob.goal].label)||"your goal")+'</b>. Your 20-week plan is aimed at <b>+'+(parseInt(ob.goalyds,10)||15)+' yds</b> on your kick and a bigger vertical — tracked against your real numbers.</p>'+
           '<div class="ob-loophead">The whole system is one loop:</div>'+ffLoopHtml()+
           '<p class="ob-p" style="font-size:13px">🧭 First thing on your dashboard: a <b>3-minute mobility screen</b> — it tunes your warm-ups to what’s tight and completes your Octane score.</p>'+
           '<div class="ob-startcue">📅 Tapping below makes <b>today Day 1</b> — your Week 1 plan starts <b>right now</b> and counts forward from today. (Just looking? Use the link below — nothing starts until you say go.)</div>';

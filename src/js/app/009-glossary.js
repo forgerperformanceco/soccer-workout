@@ -1,4 +1,4 @@
-  /* ===================== GLOSSARY — the app speaks Yardsmith, on demand =====================
+  /* ===================== GLOSSARY — the app speaks MatchFit, on demand =====================
      Every invented term (Octane, banked, iron moved, receipts…) can render as a
      tappable span with a dotted underline; tapping opens a one-sentence bottom
      sheet. One shared vocabulary, one place to learn it — the charm stays, the

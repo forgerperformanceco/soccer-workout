@@ -498,7 +498,7 @@
         : "No space to sprint flat out? Do resisted sprint starts or short hill runs. No med ball? A heavy backpack, band, or dumbbell works.";
       var toggle = '<div class="speed-toggle"><span class="st-lbl">Training at a…</span>'+
         '<span class="seg sm speed-seg">'+
-          '<button type="button" data-speedmode="field"'+(smode==="field"?' class="active"':'')+'>⛳ Field</button>'+
+          '<button type="button" data-speedmode="field"'+(smode==="field"?' class="active"':'')+'>🌳 Field</button>'+
           '<button type="button" data-speedmode="gym"'+(smode==="gym"?' class="active"':'')+'>🏋️ Gym</button>'+
         '</span></div>';
       // The featured (interactive) speed day is COMPACT like a lift day: player

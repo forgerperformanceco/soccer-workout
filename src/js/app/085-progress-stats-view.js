@@ -132,34 +132,34 @@
       svg+='<rect x="'+(x+2)+'" y="64" width="'+(segW-7)+'" height="16" rx="8" fill="'+colors[wave]+'" opacity="'+(w<wk?'0.95':(w===wk?'1':'0.35'))+'"/>';
       svg+='<text x="'+cx+'" y="98" text-anchor="middle" font-size="10" fill="#9fc4ac" font-weight="700">'+w+'</text>';
       if(wave==="deload") svg+='<text x="'+cx+'" y="60" text-anchor="middle" font-size="10">🪫</text>';
-      if(tests[w]!=null) svg+='<text x="'+cx+'" y="36" text-anchor="middle" font-size="13">⛳</text><text x="'+cx+'" y="50" text-anchor="middle" font-size="10" fill="#8be9ac" font-weight="800">'+tests[w]+'</text>';
+      if(tests[w]!=null) svg+='<text x="'+cx+'" y="36" text-anchor="middle" font-size="13">⚽</text><text x="'+cx+'" y="50" text-anchor="middle" font-size="10" fill="#8be9ac" font-weight="800">'+tests[w]+'</text>';
       if(ev && ev.week===w) svg+='<text x="'+cx+'" y="'+(tests[w]!=null?22:36)+'" text-anchor="middle" font-size="14">🏆</text>';
       if(w===wk) svg+='<text x="'+cx+'" y="18" text-anchor="middle" font-size="11" font-weight="900" fill="#ffffff">▼ YOU</text>';
     }
-    svg+='<text x="6" y="80" font-size="13">🏌️</text>';
+    svg+='<text x="6" y="80" font-size="13">🏃</text>';
     svg+='<text x="'+(pad+NW*segW+2)+'" y="80" font-size="14">🚩</text>';
     var wave2=WAVES[waveFor(wk)];
     var c=weekCard();
     var scRows=[
       { h:1, n:"Sessions", v:c.sessions+' / '+c.freq, chip: c.sessions>=c.freq?scChip("good","ON PLAN"):(c.sessions>0?scChip("mid",(c.freq-c.sessions)+" TO GO"):scChip("miss","0 YET")) },
       { h:2, n:ffTerm('iron','Iron moved'), v:(c.vol>0?c.vol.toLocaleString()+' lb':'—'), chip: c.vol>0?scChip("good","BANKED"):scChip("miss","—") },
-      { h:3, n:ffTerm('speedtest','Speed test'), v:(c.bestT!=null?c.bestT+' mph':'—'), chip: c.bestT!=null?scChip("good","TESTED"):(speedTestDue()?scChip("mid","DUE"):scChip("miss","NEXT WK")) },
+      { h:3, n:ffTerm('speedtest','Jump test'), v:(c.bestT!=null?c.bestT+' in':'—'), chip: c.bestT!=null?scChip("good","TESTED"):(speedTestDue()?scChip("mid","DUE"):scChip("miss","NEXT WK")) },
       { h:4, n:"Weigh-ins", v:String(c.weighs), chip: c.weighs>=3?scChip("good","TRENDING"):(c.weighs>0?scChip("mid","MORE"):scChip("miss","0 YET")) },
       { h:5, n:"Mobility", v:(c.mob?'screened':'—'), chip: c.mob?scChip("good","DONE"):(mobDue()?scChip("mid","DUE"):scChip("good","CURRENT")) },
       { h:6, n:"Fuel days", v:c.fuelOn+' / 7', chip: c.fuelOn>=5?scChip("good","ON PLAN"):(c.fuelLogged>0?scChip("mid","BUILDING"):scChip("miss","LOG FUEL")) }
     ];
-    return pfCard('season','🗺️ Your season <small>'+(gy?('mission +'+gy+' yds'):'20 weeks')+'</small>',
+    return pfCard('season','🗺️ Your season <small>20-week block</small>',
       '<span class="pf-num">Wk '+wk+'/20</span><span class="pf-sub">'+c.sessions+'/'+c.freq+' this wk</span>',
       '<div class="season-scroll"><svg width="'+width+'" height="'+H+'" viewBox="0 0 '+width+' '+H+'">'+svg+'</svg></div>'+
       '<div class="season-leg"><span><i style="background:#2f9e5d"></i>Build</span><span><i style="background:#e0a33a"></i>Heavy</span>'+
-      '<span><i style="background:#4d685a"></i>Deload</span><span><i style="background:#f4c542"></i>Peak</span><span>⛳ speed test (mph)</span>'+(ev&&ev.week?'<span>🏆 your event</span>':'')+'</div>'+
+      '<span><i style="background:#4d685a"></i>Deload</span><span><i style="background:#f4c542"></i>Peak</span><span>⚽ jump test (in)</span>'+(ev&&ev.week?'<span>🏆 your event</span>':'')+'</div>'+
       '<div class="season-foot"><b>Week '+wk+' · '+wave2.label+'.</b> '+wave2.strap+
         (ev ? (ev.week && !ev.past
                 ? ' <br><b>🏆 '+(ev.name||"Your event")+' — week '+ev.week+'.</b> The taper re-anchors to it: weeks '+(ev.week-1)+'–'+ev.week+' peak (volume down, intensity heavy), week '+(ev.week+1)+' recovers.'
                 : (ev.past ? '' : ' <br>🏆 '+(ev.name||"Your event")+' falls outside this 20-week block.'))
              : ' <br>🏆 Peaking for something? <button type="button" class="stest-link" data-goview="account" style="color:#8be9ac">Set your event date</button> and the taper re-anchors to it.')+
       '</div>'+
-      '<div class="pc-sec">'+ffTerm('scorecard','🗒️ Sunday Scorecard')+' <small>Wk '+wk+'</small></div>'+
+      '<div class="pc-sec">'+ffTerm('scorecard','🗒️ Weekly Scorecard')+' <small>Wk '+wk+'</small></div>'+
       '<div class="sc-grid">'+scRows.map(function(r){
         return '<div class="sc-row"><span class="sc-hole">'+r.h+'</span><span class="sc-name">'+r.n+'</span><span class="sc-val">'+r.v+'</span>'+r.chip+'</div>'; }).join("")+'</div>'+
       '<button type="button" class="sc-share" data-scshare="1">'+ffIcon("share",14)+' Share this week’s card</button>',
@@ -188,15 +188,15 @@
   function scChip(kind, label){ return '<span class="sc-chip '+kind+'">'+label+'</span>'; }
   function shareScorecard(){
     var c=weekCard();
-    var txt="My Yardsmith week "+curWeek()+" scorecard: "+c.sessions+"/"+c.freq+" sessions"+
+    var txt="My MatchFit week "+curWeek()+" scorecard: "+c.sessions+"/"+c.freq+" sessions"+
       (c.vol>0?(" · "+c.vol.toLocaleString()+" lb moved"):"")+
-      (c.bestT!=null?(" · 7-iron "+c.bestT+" mph"):"")+" — Yardsmith ⛳";
+      (c.bestT!=null?(" · vertical "+c.bestT+" in"):"")+" — MatchFit ⚽";
     ffShareImage({
-      kick:"Sunday Scorecard · Week "+curWeek(),
+      kick:"Weekly Scorecard · Week "+curWeek(),
       big:c.sessions+"/"+c.freq, unit:"sessions",
       badge:(c.sessions>=c.freq?"✅ ON PLAN":null),
       lines:[ (c.vol>0?("🏋️ "+c.vol.toLocaleString()+" lb of iron moved"):null),
-              (c.bestT!=null?("🎯 7-iron "+c.bestT+" mph tested"):null),
+              (c.bestT!=null?("🎯 vertical "+c.bestT+" in tested"):null),
               ("⚖️ "+c.weighs+" weigh-in"+(c.weighs===1?"":"s")+(c.mob?" · 🧭 mobility screened":"")) ]
     }, txt);
   }
@@ -256,7 +256,7 @@
     var sess=Object.keys(getLog()).length, lifts=bigLiftStats();
     var hasAny = sess>0 || spF.length>0 || wtF.length>0;
 
-    var html='<div class="prog-hd"><div class="prog-kick">⛳ The proof it’s working</div><h2>Your Progress</h2></div>';
+    var html='<div class="prog-hd"><div class="prog-kick">⚽ The proof it’s working</div><h2>Your Progress</h2></div>';
     html += renderScoreCard();
 
     // Consolidation pass (Stats 3.0): the page tells THREE stories below the
@@ -267,9 +267,9 @@
     var locked=[];
     if(!hasAny){
       locked.push(
-        { ic:'⚡', t:'Speed trend', s:'run the guided 7-iron test — your north star number', attr:' data-speedtest="1"' },
+        { ic:'⚡', t:'Vertical jump', s:'run the guided vertical-jump test — your north star number', attr:' data-speedtest="1"' },
         { ic:'🏋️', t:'Gym & body', s:'log your first workout — PRs, strength and consistency build here', attr:' data-goview="plan"' },
-        { ic:'⛳', t:'On the course', s:'bank rounds — the gym-to-course proof builds here', attr:' data-roundlog="1"' },
+        { ic:'⚽', t:'On the pitch', s:'bank matches — the gym-to-pitch proof builds here', attr:' data-roundlog="1"' },
         { ic:'⚖️', t:'Bodyweight trend', s:'five seconds with ＋ Log', attr:' data-qopen="1"' });
     } else {
       // ---- Clubhead speed (north star) ----
@@ -280,23 +280,23 @@
       // schedule only surfaces here on the day it's actually due.)
       var spNow=spF.length?spF[spF.length-1]:null, spBase=spF.length?spF[0]:null, spBest=spF.length?Math.max.apply(null,spF):null;
       var YDS_PER_MPH=2, spGain=(spNow!=null&&spBase!=null)?(spNow-spBase):0;
-      if(!spF.length) locked.push({ ic:'⚡', t:'Speed trend', s:'run the guided 7-iron test — your north star number', attr:' data-speedtest="1"' });
-      else html += pfCard('speed','⚡ Clubhead speed <small>7-iron</small>',
-        (spNow!=null?'<span class="pf-num">'+spNow+' mph</span>':'')+(spF.length>=2?pcDelta(spNow-spBase," mph"):""),
-        (spNow!=null?'<div class="pc-now">'+spNow+'<span>mph</span></div>':'<div class="pc-now muted">—</div>')+
-        (spF.length>=2 ? pcLine(spF,"#16a34a","pcSpeed", spD, " mph")
-          : '<div class="pc-need">'+(spF.length===1?"One more entry and your speed trend appears.":"Add a 7-iron speed with <b>＋ Log</b> to start the trend.")+'</div>')+
+      if(!spF.length) locked.push({ ic:'⚡', t:'Vertical jump', s:'run the guided vertical-jump test — your north star number', attr:' data-speedtest="1"' });
+      else html += pfCard('speed','⚡ Vertical jump <small>jump test</small>',
+        (spNow!=null?'<span class="pf-num">'+spNow+' in</span>':'')+(spF.length>=2?pcDelta(spNow-spBase," in"):""),
+        (spNow!=null?'<div class="pc-now">'+spNow+'<span>in</span></div>':'<div class="pc-now muted">—</div>')+
+        (spF.length>=2 ? pcLine(spF,"#16a34a","pcSpeed", spD, " in")
+          : '<div class="pc-need">'+(spF.length===1?"One more entry and your jump trend appears.":"Add a vertical jump with <b>＋ Log</b> to start the trend.")+'</div>')+
         (spF.length>=2&&spGain>0
-          ? '<div class="pc-payoff">🎯 That’s roughly <b>+'+Math.round(spGain*YDS_PER_MPH)+' yards</b> of 7-iron carry since your baseline. <span>Speed is distance — ~2 yds per mph.</span></div>'
-          : (spF.length>=2 ? '<div class="pc-payoff muted">Every <b>+1 mph</b> here is about <b>+2 yards</b> of carry. Keep the trend climbing.</div>' : ""))+
+          ? '<div class="pc-payoff">🎯 That’s real vertical you’ve added since your baseline. <span>More hops means more power off the ground.</span></div>'
+          : (spF.length>=2 ? '<div class="pc-payoff muted">Every inch here is explosive power for sprints and jumps. Keep the trend climbing.</div>' : ""))+
         '<div class="pc-foot"><span>'+ffTerm('speedtest','the test & benchmarks')+'</span>'+
-          (spF.length>=2?'<span>baseline <b>'+spBase+'</b> · best <b>'+spBest+'</b> mph</span>':'')+'</div>'+
-        (speedTestDue()?'<div class="pc-test"><button class="stest-go sm" data-speedtest="1">🎯 Speed test due — run it now</button></div>':""));
+          (spF.length>=2?'<span>baseline <b>'+spBase+'</b> · best <b>'+spBest+'</b> in</span>':'')+'</div>'+
+        (speedTestDue()?'<div class="pc-test"><button class="stest-go sm" data-speedtest="1">🎯 Jump test due — run it now</button></div>':""));
 
       // ---- On the course: the gym-to-course proof ----
       var cc=''; try{ cc=courseCardHtml(); }catch(e){}
       if(cc) html+=cc;
-      else locked.push({ ic:'⛳', t:'On the course', s:'log a round — score, longest drive, how the body held up', attr:' data-roundlog="1"' });
+      else locked.push({ ic:'⚽', t:'On the pitch', s:'log a match — how you played and how the body held up', attr:' data-roundlog="1"' });
 
       // ---- Gym & body: ONE card for the bodybuilder side — PR wall, e1RM
       // trends, bodyweight and consistency. They were four separate folds;
@@ -400,7 +400,7 @@
   function lbGoalTag(g){ return (GOALS[g] && GOALS[g].label) || ""; }
   function lbWeekSessions(r){ return (r.week_start===weekStartStr()) ? (r.week_sessions||0) : 0; }
   function lbVal(r){
-    if(lbBoard==="speed")  return r.speed!=null  ? r.speed+" mph" : "—";
+    if(lbBoard==="speed")  return r.speed!=null  ? r.speed+" in" : "—";
     if(lbBoard==="streak") return (r.streak||0)+" wk";
     if(lbBoard==="week")   return lbWeekSessions(r)+" this wk";
     return r.score!=null ? r.score : "—";
@@ -408,7 +408,7 @@
   function renderLeaderboardCard(){
     var seg=["week","score","speed","streak"].map(function(b){
       return '<button data-lb="'+b+'" class="'+(lbBoard===b?"on":"")+'">'+
-        ({week:"This week",score:"Score",speed:"Speed",streak:"Streak"}[b])+'</button>'; }).join("");
+        ({week:"This week",score:"Score",speed:"Jump",streak:"Streak"}[b])+'</button>'; }).join("");
     return pfCard('lb','🏆 Leaderboard','',
       '<div class="lb-seg lb-seg-top" id="lbSeg">'+seg+'</div>'+
       '<div id="lbBody"><div class="pc-need">Loading the board…</div></div>', 'pcard lb');
@@ -432,9 +432,9 @@
       return '<div class="lb-mine">On the board as <b>@'+lbEsc(mine.handle)+'</b>'+
         '<button id="lbLeave" class="lb-leave">Leave</button></div>';
     return '<div class="lb-join">'+
-      '<input id="lbHandle" maxlength="20" placeholder="Pick a handle (e.g. BombsAway)" value="'+lbEsc(lsGet("ff_handle",""))+'" />'+
+      '<input id="lbHandle" maxlength="20" placeholder="Pick a handle (e.g. SpeedMerchant)" value="'+lbEsc(lsGet("ff_handle",""))+'" />'+
       '<button id="lbJoin">Join</button>'+
-      '<div class="lb-hint">Public to other golfers — use a nickname, not your real name.</div></div>';
+      '<div class="lb-hint">Public to other players — use a nickname, not your real name.</div></div>';
   }
   async function loadLeaderboard(){
     var el=$("lbBody"); if(!el) return;
@@ -514,7 +514,7 @@
       // Full reset, same as the You tab — clearing only the start date left the
       // old season's ff_log keyed at weeks 1-20, so a "restarted" plan showed
       // every day already logged. History/bodyweight/7-iron trends survive.
-      if(confirm("Restart from week 1? This clears the plan start date and this season's logged workouts — your history, bodyweight and 7-iron trends stay.")) resetPlanFull();
+      if(confirm("Restart from week 1? This clears the plan start date and this season's logged workouts — your history, bodyweight and vertical-jump trends stay.")) resetPlanFull();
       return; }
     var pv=e.target.closest("[data-planview]");
     if(pv && !pv.disabled){ lsSet("ff_planview", pv.getAttribute("data-planview")); focusDay=null; renderPhase(); return; }
@@ -577,7 +577,7 @@
     if(how){ openExDemo(how.getAttribute("data-howto")); return; }
     var wco=e.target.closest("[data-whycoach]");
     if(wco){ var ln=wco.getAttribute("data-whycoach");
-      if(window.FFCoach && window.FFCoach.ready()) window.FFCoach.ask("Why does "+ln+" build my clubhead speed, and how do I execute it for maximum power transfer into the swing? Keep it specific and practical.", "Why this lift");
+      if(window.FFCoach && window.FFCoach.ready()) window.FFCoach.ask("Why does "+ln+" build my speed and power, and how do I execute it for maximum transfer onto the pitch? Keep it specific and practical.", "Why this lift");
       return; }
   });
   // Inline logger inputs: save on every keystroke and update plate math IN PLACE
@@ -722,12 +722,12 @@
       }catch(e){}
       sheet.innerHTML='<div class="qsheet-card"><div class="qsheet-grab"></div>'+
         '<div class="qsheet-h">＋ Log anything</div>'+
-        quickLogHtml("q","Weight, 7-iron &amp; driver feed your trends, Octane and the board.")+
+        quickLogHtml("q","Weight &amp; vertical jump feed your trends, Octane and the board.")+
         '<div class="qsheet-acts">'+
         (train?('<button type="button" class="qsheet-act" data-startplayer="'+escAttr(d.name)+'">'+ffIcon("barbell",18)+'<span>Start today’s workout<span class="qa-sub">'+d.name.replace(/^Day \d+ — /,"")+' · guided player</span></span><span class="qa-go">›</span></button>'):'')+
         mealRow+
-        '<button type="button" class="qsheet-act" data-roundlog="1">⛳<span>Log a round<span class="qa-sub">score, longest drive, how the body held up</span></span><span class="qa-go">›</span></button>'+
-        '<button type="button" class="qsheet-act" data-speedtest="1">'+ffIcon("target",18)+'<span>Speed test<span class="qa-sub">3 max swings — best one counts</span></span><span class="qa-go">›</span></button>'+
+        '<button type="button" class="qsheet-act" data-roundlog="1">⚽<span>Log a match<span class="qa-sub">how you played and how the body held up</span></span><span class="qa-go">›</span></button>'+
+        '<button type="button" class="qsheet-act" data-speedtest="1">'+ffIcon("target",18)+'<span>Jump test<span class="qa-sub">3 max jumps — best one counts</span></span><span class="qa-go">›</span></button>'+
         '<button type="button" class="qsheet-act" data-mobscreen="1">'+ffIcon("compass",18)+'<span>Mobility screen<span class="qa-sub">3 moves · ~3 minutes</span></span><span class="qa-go">›</span></button>'+
         '</div></div>';
       sheet.hidden=false; document.body.style.overflow="hidden";
@@ -798,8 +798,8 @@
   var ASK_PROMPTS = {
     read:  "Give me a quick read on where I'm at from my numbers — what's working and the single most important thing to focus on this week.",
     meals: "Build me a full day of meals that hits my macro targets — realistic foods with cooked weights and named cuts, plus some variety. Breakfast should be breakfast food, and put faster carbs around training.",
-    train: "Look at my current week and training log — am I progressing on the big lifts and my 7-iron speed, and what should I focus on or adjust next?",
-    progress: "Read my progress trends — my 7-iron speed, estimated 1RM on the big lifts, bodyweight and consistency. What's trending well, what's stalling, and the one thing I should push next to turn mass into clubhead speed?"
+    train: "Look at my current week and training log — am I progressing on the big lifts and my vertical jump, and what should I focus on or adjust next?",
+    progress: "Read my progress trends — my vertical jump, estimated 1RM on the big lifts, bodyweight and consistency. What's trending well, what's stalling, and the one thing I should push next to turn mass into speed and power?"
   };
   var ASK_LABELS = { read:"Your dashboard", meals:"Your macro targets", train:"This week's training", progress:"Your progress trends" };
   document.addEventListener("click", function(e){

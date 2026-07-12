@@ -20,16 +20,16 @@
     var thisWk=sessions.filter(function(se){ return se.w===wk; }).length;
 
     if(spd.length===0 && hasData)
-      out.push({prio:55, sig:"coldspeed", ic:"⚡", title:"Start your speed trend",
-        body:"You're putting in the work — now capture the payoff. Run the guided <b>speed test</b> — warm-up, 3 max swings, best one counts — and every session starts proving itself.",
+      out.push({prio:55, sig:"coldspeed", ic:"⚡", title:"Start your vertical trend",
+        body:"You're putting in the work — now capture the payoff. Run the guided <b>vertical jump test</b> — warm-up, 3 max jumps, best one counts — and every session starts proving itself.",
         act:"speedtest", actLabel:"🎯 Run the test",
-        ask:"I haven't logged a clubhead speed yet — how do I measure my 7-iron speed and what's a realistic number for my level?"});
+        ask:"I haven't logged a vertical jump yet — how do I measure my vertical and what's a realistic number for my level?"});
 
     // Mobility screen — first-time nudge, then the 4-week re-screen cadence.
     var mobLast=(typeof lastMob==="function")?lastMob():null;
     if(!mobLast && hasData)
       out.push({prio:79, sig:"mob0", ic:"🧭", title:"3-minute mobility screen",
-        body:"Adding muscle should never cost you turn. Three quick self-tests — trunk rotation, hips, deep squat — become your Octane's <b>5th pillar</b> and tune your warm-ups to whatever's tight.",
+        body:"Adding muscle should never cost you mobility. Three quick self-tests — trunk rotation, hips, deep squat — become your Octane's <b>5th pillar</b> and tune your warm-ups to whatever's tight.",
         act:"mobscreen", actLabel:"🧭 Take the screen"});
     else if(mobLast && (Date.now()-mobLast.ts)>=28*864e5)
       out.push({prio:72, sig:"mobre:"+Math.floor(Date.now()/(14*864e5)), ic:"🧭", title:"Mobility re-screen due",
@@ -38,9 +38,9 @@
 
     // The biweekly retest ritual — testing is the scoreboard, so it gets its own nudge.
     if(spd.length>0 && speedTestDue() && planStart())
-      out.push({prio:82, sig:"stest:"+Math.floor(Date.now()/(7*864e5)), ic:"🎯", title:"Speed Test Day",
+      out.push({prio:82, sig:"stest:"+Math.floor(Date.now()/(7*864e5)), ic:"🎯", title:"Jump Test Day",
         body:(daysSinceTest()!=null?("It's been <b>"+daysSinceTest()+" days</b> since your last test. "):"")+
-          "Warm up, take <b>3 max-intent 7-iron swings</b>, keep the best. Two weeks of training since the last one — time to see what it bought you.",
+          "Warm up, take <b>3 max-intent jumps</b>, keep the best. Two weeks of training since the last one — time to see what it bought you.",
         act:"speedtest", actLabel:"🎯 Run today's test"});
 
     if(daysIdle!=null && daysIdle>=6 && hasData)
@@ -61,27 +61,27 @@
       var spanDays=(latest.t-spd[0].t)/864e5;
       if(latest.s>prevMax+0.4){
         var gain=Math.round((latest.s-base)*10)/10;
-        out.push({prio:84, sig:"pr:"+latest.s, ic:"🚀", title:"New 7-iron PR — "+latest.s+" mph",
-          body:(gain>0?("Up <b>+"+gain+" mph</b> from baseline ≈ <b>+"+Math.round(gain*2)+" yards</b> of carry. "):"")+"Whatever you're doing is working — keep the overspeed work crisp and fully rested.",
-          ask:"I just hit a new 7-iron speed PR. How do I keep progressing from here without plateauing or losing the gains?"});
+        out.push({prio:84, sig:"pr:"+latest.s, ic:"🚀", title:"New vertical PR — "+latest.s+" in",
+          body:(gain>0?("Up <b>+"+gain+" in</b> from baseline. "):"")+"Whatever you're doing is working — keep the speed and power work crisp and fully rested.",
+          ask:"I just hit a new vertical jump PR. How do I keep progressing from here without plateauing or losing the gains?"});
       } else if(spd.length>=3 && spanDays>=14 && latest.s<=base+0.4){
         var wks=Math.round(spanDays/7);
-        out.push({prio:80, sig:"stall:"+latest.s+":"+wks, ic:"📉", title:"Speed's been flat ~"+wks+" weeks",
-          body:"You've kept training but the 7-iron number hasn't moved. Usual culprits: not enough true <b>overspeed</b> work, under-recovery, or under-fueling around training. Want the fix tailored to you?",
-          ask:"My 7-iron clubhead speed has been flat for about "+wks+" weeks even though I've kept training. What are the most likely causes and exactly how do I break the plateau?"});
+        out.push({prio:80, sig:"stall:"+latest.s+":"+wks, ic:"📉", title:"Vertical's been flat ~"+wks+" weeks",
+          body:"You've kept training but the jump number hasn't moved. Usual culprits: not enough true <b>power</b> work, under-recovery, or under-fueling around training. Want the fix tailored to you?",
+          ask:"My vertical jump has been flat for about "+wks+" weeks even though I've kept training. What are the most likely causes and exactly how do I break the plateau?"});
       }
     }
 
     var tr=weightTrend();
     if(tr && tr.ratePerWeek>0.25 && spd.length>=2 && spd[spd.length-1].s<=spd[0].s+0.4)
       out.push({prio:78, sig:"convert:"+Math.round(tr.ratePerWeek*10), ic:"🔁", title:"Turn that mass into speed",
-        body:"You're gaining weight (<b>"+(tr.ratePerWeek>0?'+':'')+(Math.round(tr.ratePerWeek*10)/10)+" lb/wk</b>) but 7-iron speed is flat — the new muscle hasn't been <i>converted</i> yet. Bias toward overspeed swings, jumps and med-ball throws, and make sure you're not over-bulking.",
-        ask:"I've added bodyweight but my clubhead speed hasn't gone up. How do I convert the new mass into actual swing speed?"});
+        body:"You're gaining weight (<b>"+(tr.ratePerWeek>0?'+':'')+(Math.round(tr.ratePerWeek*10)/10)+" lb/wk</b>) but your vertical is flat — the new muscle hasn't been <i>converted</i> yet. Bias toward sprints, jumps and med-ball throws, and make sure you're not over-bulking.",
+        ask:"I've added bodyweight but my speed and vertical haven't gone up. How do I convert the new mass into actual on-field explosiveness?"});
 
     bigLiftStats().slice(0,4).forEach(function(L){
       if(L.n>=2 && L.last===L.best && L.last>L.first)
         out.push({prio:58, sig:"spr:"+L.name+":"+Math.round(L.last), ic:"🏋️", title:"Strength PR — "+L.name,
-          body:"Estimated 1RM up to <b>"+Math.round(L.last)+" lb</b>. Force is the raw material for clubhead speed — this is exactly how mass becomes yards.", ask:null});
+          body:"Estimated 1RM up to <b>"+Math.round(L.last)+" lb</b>. Force is the raw material for sprint speed and jump height — this is exactly how mass becomes explosiveness.", ask:null});
       else if(L.n>=3){
         var recent=L.series.slice(-3), rmax=Math.max.apply(null,recent);
         if(L.last<=rmax && L.last<=L.best-0.5)
@@ -95,7 +95,7 @@
     // eye to scroll past this slot — real signals only, so the slot stays loud.
     if(!hasData)
       out.push({prio:40, sig:"firststeps", ic:"🌟", title:"Let's get your first data points",
-        body:"Log a workout on the <b>Train</b> tab and drop today's bodyweight + 7-iron speed with <b>＋ Log</b>. Two data points and your trends — and your Octane — start climbing.", ask:null});
+        body:"Log a workout on the <b>Train</b> tab and drop today's bodyweight + vertical jump with <b>＋ Log</b>. Two data points and your trends — and your Octane — start climbing.", ask:null});
 
     return out.sort(function(a,b){ return b.prio-a.prio; });
   }
@@ -133,8 +133,8 @@
     }
     if(speedTestDue() && lsGet("ff_body",[]).some(function(e){ return e && e.s; }))
       return '<button type="button" class="nu-card alt" data-speedtest="1"><span class="nu-go">›</span>'+
-        '<div class="nu-kick">Next up · The scoreboard</div><div class="nu-title">🎯 Speed Test Day</div>'+
-        '<div class="nu-sub">3 max-intent 7-iron swings — best one counts. Two weeks of work; time to cash it in.</div></button>';
+        '<div class="nu-kick">Next up · The scoreboard</div><div class="nu-title">🎯 Jump Test Day</div>'+
+        '<div class="nu-sub">3 max-intent jumps — best one counts. Two weeks of work; time to cash it in.</div></button>';
     if(mobDue())
       return '<button type="button" class="nu-card alt" data-mobscreen="1"><span class="nu-go">›</span>'+
         '<div class="nu-kick">Next up · 3 minutes</div><div class="nu-title">🧭 Mobility screen</div>'+
@@ -145,9 +145,9 @@
       var rtd=(typeof roundToday==="function")?roundToday():null;
       var doneR=restDone(wk, dayKey(d)) || !!rtd;
       return '<button type="button" class="nu-card rest" data-nurest="'+escAttr(dayKey(d))+'"><span class="nu-go">'+(doneR?'✓':'›')+'</span>'+
-        '<div class="nu-kick">Next up · '+(rtd?'Play day':'Recovery day')+'</div>'+
-        '<div class="nu-title">'+(rtd?'Round in the books ⛳':(doneR?'Recovery banked ✓':'🌱 Recover on purpose'))+'</div>'+
-        '<div class="nu-sub">'+(rtd?'Nice — 18 played is your day. Eat, recover, back at it tomorrow.':(doneR?'Growth happens today. See you tomorrow.':'Walk a casual 9, mobility flow, foam roll — tap to log it.'))+'</div></button>';
+        '<div class="nu-kick">Next up · '+(rtd?'Match day':'Recovery day')+'</div>'+
+        '<div class="nu-title">'+(rtd?'Match in the books ⚽':(doneR?'Recovery banked ✓':'🌱 Recover on purpose'))+'</div>'+
+        '<div class="nu-sub">'+(rtd?'Nice — a match is your day. Eat, recover, back at it tomorrow.':(doneR?'Growth happens today. See you tomorrow.':'Light jog, mobility flow, foam roll — tap to log it.'))+'</div></button>';
     }
     return '<button type="button" class="nu-card rest" data-goview="plan"><span class="nu-go">›</span>'+
       '<div class="nu-kick">Next up</div><div class="nu-title">Today is banked ✓</div>'+
@@ -217,7 +217,7 @@
       // Skip the recovery row when a round is logged — the "Round banked ✓" row
       // below already stands in as today's activity.
       entries.push(entry(12*60, fmtMin(12*60),"🌱","Active recovery",
-        restDoneToday?"Recovery logged":"Walk 9, mobility flow, foam roll — growth day",
+        restDoneToday?"Recovery logged":"Light jog, mobility flow, foam roll — growth day",
         { attr:' data-nurest="'+escAttr(dayKey(d))+'"', done:restDoneToday }));
     }
     if(ffSchedule && ffSchedule.length){
@@ -239,11 +239,11 @@
     }
     var rd=(typeof roundToday==="function")?roundToday():null;
     if(rd){
-      entries.push(entry(24*60,"Any","⛳","Round banked ✓",
-        [(rd.score!=null?("shot "+rd.score):null),(rd.drive?(Math.round(rd.drive)+" yd bomb"):null),(rd.energy==="strong"?"finished strong":null)].filter(Boolean).join(" · ")||"tap to edit",
+      entries.push(entry(24*60,"Any","⚽","Match banked ✓",
+        [(rd.score!=null?(rd.score+" min played"):null),(rd.drive?(Math.round(rd.drive)+" yd kick"):null),(rd.energy==="strong"?"finished strong":null)].filter(Boolean).join(" · ")||"tap to edit",
         { attr:' data-roundlog="1"', done:true }));
     } else {
-      entries.push(entry(24*60+1,"Any","⛳","Playing a round?","Plan it — and log how it went after",{ attr:' data-goview="gameday"' }));
+      entries.push(entry(24*60+1,"Any","⚽","Playing a match?","Plan it — and log how it went after",{ attr:' data-goview="gameday"' }));
     }
     entries.sort(function(a,b){ return a.min-b.min; });
     // Calm layout: everything done folds into one pill; the FIRST undone item

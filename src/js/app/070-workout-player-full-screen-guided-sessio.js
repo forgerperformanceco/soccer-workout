@@ -198,7 +198,7 @@
         '<div class="pl-stat"><div class="v">'+mins+'m</div><div class="k">session time</div></div>'+
         '<div class="pl-stat"><div class="v">'+octNow+(dOct>0?' <small style="color:#8be9ac">▲'+dOct+'</small>':'')+'</div><div class="k">Octane</div></div>'+
       '</div>'+
-      '<div class="pl-cue" style="text-align:center">'+(prs.length?'Force is the raw material for clubhead speed — that PR is yards in the bank.':'Consistency is the biggest lever on your Octane. Session banked.')+'</div>'+
+      '<div class="pl-cue" style="text-align:center">'+(prs.length?'Force is the raw material for explosive speed — that PR is power in the bank.':'Consistency is the biggest lever on your Octane. Session banked.')+'</div>'+
       '<textarea class="pl-notes" id="plNote" rows="2" maxlength="240" placeholder="Session notes — sleep, energy, aches… (saved with the workout)">'+lbEsc(player.sess.note||"")+'</textarea>'+
       '<button class="pl-share" data-pladdlift="1" style="border-color:rgba(255,255,255,.25);color:#dff1e4;">＋ Add one more lift</button>'+
       '<button class="pl-share" data-plshare="1">'+ffIcon("share",15)+' Share this session</button>'+
@@ -249,7 +249,7 @@
       if(top>0 && pb!=null && top>pb+0.5) prs.push(x.name+" e1RM "+Math.round(top)+" lb");
     });
     var txt=player.dayName.replace(/^Day \d+ — /,'')+" done 💪 "+(vol>0?vol.toLocaleString()+" lb moved":"session banked")+
-      (prs.length?(" · PR: "+prs.join(", ")):"")+" — training with Yardsmith ⛳";
+      (prs.length?(" · PR: "+prs.join(", ")):"")+" — training with MatchFit ⚽";
     var mins=Math.max(1, Math.round(((player.sess.activeMs||0)+(Date.now()-player.startedAt))/60000));
     ffShareImage({
       kick:"Session complete · Week "+player.week,
@@ -445,8 +445,8 @@
       var sv=parseFloat(e.s); if(!isNaN(sv) && (!sBest || sv>sBest.v)) sBest={v:sv, d:e.date||""};
       var dv=parseFloat(e.d); if(!isNaN(dv) && (!dBest || dv>dBest.v)) dBest={v:dv, d:e.date||""};
     });
-    if(sBest) rows.push({ ic:"⚡", lb:"7-iron speed", v:Math.round(sBest.v), u:"mph", d:sBest.d });
-    if(dBest) rows.push({ ic:"⛳", lb:"Longest drive", v:Math.round(dBest.v), u:"yds", d:dBest.d });
+    if(sBest) rows.push({ ic:"⚡", lb:"Vertical jump", v:Math.round(sBest.v), u:"in", d:sBest.d });
+    if(dBest) rows.push({ ic:"⚽", lb:"Longest kick", v:Math.round(dBest.v), u:"yds", d:dBest.d });
     var big=null, hist=lsGet("ff_history",[])||[], vol=0;
     hist.forEach(function(h){ vol+=(h.volume||0); if(h.volume && (!big || h.volume>big.v)) big={v:h.volume, d:h.date||""}; });
     if(big) rows.push({ ic:"🔥", lb:"Biggest session", v:big.v, u:"lb", d:big.d, loc:true });
@@ -590,7 +590,7 @@
 
   /* ----- Octane score — one number for build-to-speed progress -----
      A composite of the data the app already records: showing up (consistency),
-     getting faster (7-iron speed), getting stronger (logged e1RM), and turning
+     getting more explosive (vertical jump), getting stronger (logged e1RM), and turning
      mass into speed (power-to-weight). It scores YOUR trajectory + consistency —
      not a leaderboard — and only counts pillars you've given data for. */
   function e1RM(w, r){ w=parseFloat(w); r=parseInt(r,10);
@@ -642,15 +642,15 @@
         detail:"Log a workout to start" });
     }
 
-    // 2) Speed (30) — 7-iron clubhead speed gain from your first entry.
+    // 2) Speed (30) — vertical-jump gain from your first entry.
     if(speeds.length >= 2){
       var sg = (speeds[speeds.length-1]-speeds[0])/speeds[0];
-      parts.push({ key:"speed", label:"Clubhead speed", have:true, max:30,
+      parts.push({ key:"speed", label:"Vertical jump", have:true, max:30,
         pts: Math.round(clamp(15 + sg*220, 0, 30)),
-        detail: (sg>=0?"+":"")+(sg*100).toFixed(1)+"% 7-iron" });
+        detail: (sg>=0?"+":"")+(sg*100).toFixed(1)+"% jump" });
     } else {
-      parts.push({ key:"speed", label:"Clubhead speed", have:false, max:30, pts:0,
-        detail: speeds.length===1 ? "Log again to trend" : "Add a 7-iron speed" });
+      parts.push({ key:"speed", label:"Vertical jump", have:false, max:30, pts:0,
+        detail: speeds.length===1 ? "Log again to trend" : "Add a vertical jump" });
     }
 
     // 3) Strength (25) — estimated 1RM progress on the big lifts.
@@ -714,14 +714,14 @@
   }
   var FF_LEVER = {
     consistency: "log your sessions — showing up is worth the most points",
-    speed: "test your 7-iron speed every 2 weeks so the trend can climb",
+    speed: "test your vertical jump every 2 weeks so the trend can climb",
     strength: "push the big lifts with double progression and log the weights",
     p2w: "keep the surplus lean so speed outpaces bodyweight",
     mobility: "run the 3-move mobility screen and hit the warm-up moves it adds",
     fuel: "check off your meals on the Fuel tab — ten seconds a day closes the loop"
   };
   function ffScoreSummary(r){
-    if(r.score==null) return "Log a workout and add your bodyweight + 7-iron speed to fill the tank — one number for showing up, getting faster &amp; stronger.";
+    if(r.score==null) return "Log a workout and add your bodyweight + vertical jump to fill the tank — one number for showing up, getting faster &amp; stronger.";
     if(r.pillars<2) return "Add data across a few weeks so the gauge can read your <b>trend</b>, not just a snapshot.";
     var have=r.parts.filter(function(p){ return p.have; });
     var weak=have.slice().sort(function(a,b){ return (a.pts/a.max)-(b.pts/b.max); })[0];
@@ -743,8 +743,8 @@
       '<text x="107" y="86" fill="#9ccfb0" font-size="12" font-weight="800">F</text></svg>'+
       '<div class="num"'+(score==null?'':' data-countup="'+score+'"')+'>'+(score==null?"–":score)+'</div></div>';
   }
-  // Driver-carry distance (yards) — the hero outcome. Stored on ff_body entries as `d` so it
-  // rides the same sync/merge: works for a launch-monitor carry OR an eyeballed "how far I hit it".
+  // Kick distance (yards) — the hero outcome. Stored on ff_body entries as `d` so it
+  // rides the same sync/merge: works for a measured long-ball OR an eyeballed "how far I kick it".
   function driveList(){
     return lsGet("ff_body",[]).filter(function(e){ return e && e.d!=null && e.d!=="" && !isNaN(parseFloat(e.d)); })
       .map(function(e){ return { date:e.date, y:parseFloat(e.d) }; });
@@ -754,7 +754,7 @@
     var last=l[l.length-1], first=l[0];
     return { latest:Math.round(last.y), baseline:Math.round(first.y), gain:Math.round(last.y-first.y), n:l.length };
   }
-  // Single writer for the weight / 7-iron / driver log — merges into one entry per day so the
+  // Single writer for the weight / vertical-jump / kick log — merges into one entry per day so the
   // three log spots (dashboard, Stats, Train progress) all behave the same and never dupe a date.
   function logBodyEntry(wv, sv, dv){
     wv=(wv||"").trim(); sv=(sv||"").trim(); dv=(dv||"").trim();
@@ -776,23 +776,23 @@
     try { lsSet("ff_score", { score:r.score,
       pillars:r.parts.map(function(p){ return { name:p.label, pts:p.pts, max:p.max, have:p.have, detail:p.detail }; }) }); } catch(e){}
   }
-  // Dashboard hero: driver carry + gain up top, the Octane engine gauge underneath.
+  // Dashboard hero: kick distance + gain up top, the Octane engine gauge underneath.
   function goalYds(){ var g=parseInt(lsGet("ff_goalyds",0),10); return (g>0)?g:null; }
-  // Reference numbers calibrated to the user's group (sex + 50+), from public
-  // launch-monitor / amateur norms. Used for input placeholders and soft context
-  // lines only — scoring stays trend-vs-your-own-baseline everywhere.
+  // Ballpark reference numbers for input placeholders and soft context lines only —
+  // scoring stays trend-vs-your-own-baseline everywhere. seven = vertical jump (in),
+  // drive = longest kick (yds), weight = bodyweight (lb). Rough norms, not targets.
   function ffBench(sx, age){
     sx = sx || (typeof state!=="undefined" && state.sex) || "male";
     age = parseInt(age!=null?age:($("age")&&$("age").value), 10) || 0;
-    var senior = age >= 50;
+    var adult = age >= 20;
     if(sx === "female"){
-      return senior
-        ? { seven:60, drive:160, weight:145, label:"typical 50+ female amateur", range:"~55–65 mph 7-iron" }
-        : { seven:65, drive:175, weight:145, label:"typical female amateur",     range:"~60–68 mph 7-iron" };
+      return adult
+        ? { seven:18, drive:48, weight:150, label:"a typical adult player", range:"~15–22 in vertical" }
+        : { seven:16, drive:42, weight:130, label:"a typical teen player",  range:"~13–19 in vertical" };
     }
-    return senior
-      ? { seven:75, drive:210, weight:185, label:"typical 50+ male amateur", range:"~70–78 mph 7-iron" }
-      : { seven:85, drive:245, weight:180, label:"typical male amateur",     range:"~75–80 mph 7-iron" };
+    return adult
+      ? { seven:24, drive:62, weight:175, label:"a typical adult player", range:"~20–28 in vertical" }
+      : { seven:20, drive:55, weight:150, label:"a typical teen player",  range:"~16–24 in vertical" };
   }
   function renderHeroCard(muted){
     var r=ffScore(); saveScoreSnapshot(r);
@@ -806,15 +806,15 @@
           '<span class="hm-lbl">'+(hit?'🏁 Mission complete — +'+gy+' yds':'Mission: +'+gy+' yds')+'</span>'+
           '<span class="hm-track"><span class="hm-fill" style="width:'+Math.max(4,pctG)+'%"></span></span></div>';
       }
-      top = '<div class="hero-kick">⛳ Driver carry</div>'+
+      top = '<div class="hero-kick">⚽ Kick distance</div>'+
         '<div class="hero-dist"><b>'+d.latest+'</b><span class="u">yds</span></div>'+
         (gain!=null
           ? '<div class="hero-gainrow"><span class="hero-gain'+(gain>=0?'':' neg')+'">'+(gain>=0?'▲ +':'▼ ')+Math.abs(gain)+' yds</span>'+
             '<span class="hero-since">vs your start · was '+d.baseline+'</span></div>'+missionHtml
-          : '<div class="hero-since solo">Baseline banked — your next logged drive starts the climb.</div>');
+          : '<div class="hero-since solo">Baseline banked — your next logged kick starts the climb.</div>');
     } else {
-      top = '<div class="hero-kick">⛳ Driver carry</div>'+
-        '<div class="hero-empty"><b>Add your driver distance</b><span>From a launch monitor, or just how far you hit it — hit <b>＋ Log</b> and watch it climb.</span></div>';
+      top = '<div class="hero-kick">⚽ Kick distance</div>'+
+        '<div class="hero-empty"><b>Add your kick distance</b><span>From a measured long-ball, or just how far you kick it — hit <b>＋ Log</b> and watch it climb.</span></div>';
     }
     // The Octane subline is the SAME dynamic "biggest lever" read the Stats hub
     // uses — a coach line that changes with the data beats a slogan that never
@@ -859,8 +859,8 @@
     }
     if(p.key==="speed"){
       var sp=stSpeedHistory();
-      return '<div class="fd-tx"><b>'+p.detail+'</b> — 7-iron trend vs your first entry. Every <b>+1 mph ≈ +2 yards</b> of carry.</div>'+
-        (sp.length>=2?('<div class="fd-sparkrow">'+pcMiniSpark(sp,"#8be9ac")+'<span class="n">baseline '+sp[0]+' → now '+sp[sp.length-1]+' mph</span></div>'):'')+
+      return '<div class="fd-tx"><b>'+p.detail+'</b> — vertical-jump trend vs your first entry. Jump is your cleanest read on explosive power.</div>'+
+        (sp.length>=2?('<div class="fd-sparkrow">'+pcMiniSpark(sp,"#8be9ac")+'<span class="n">baseline '+sp[0]+' → now '+sp[sp.length-1]+' in</span></div>'):'')+
         '<button type="button" class="fd-act" data-speedtest="1">🎯 '+(speedTestDue()?'Test due — run it now':'Run a test early')+'</button>';
     }
     if(p.key==="strength"){
@@ -875,7 +875,7 @@
       var wt=body.map(function(e){ return parseFloat(e.w); }).filter(function(v){ return !isNaN(v); });
       var sg=sp2.length>=2?((sp2[sp2.length-1]-sp2[0])/sp2[0]*100).toFixed(1):null;
       var wg=wt.length>=2?((wt[wt.length-1]-wt[0])/wt[0]*100).toFixed(1):null;
-      return '<div class="fd-tx"><b>'+p.detail+'</b>'+((sg!=null&&wg!=null)?(' — speed '+(sg>=0?'+':'')+sg+'% vs bodyweight '+(wg>=0?'+':'')+wg+'%. Faster per pound = a leaner, harder engine.'):' — track weight AND 7-iron speed to unlock this pillar.')+'</div>'+
+      return '<div class="fd-tx"><b>'+p.detail+'</b>'+((sg!=null&&wg!=null)?(' — speed '+(sg>=0?'+':'')+sg+'% vs bodyweight '+(wg>=0?'+':'')+wg+'%. Faster per pound = a leaner, harder engine.'):' — track weight AND vertical jump to unlock this pillar.')+'</div>'+
         '<button type="button" class="fd-act" data-qopen="1">＋ Log today ›</button>';
     }
     if(p.key==="fuel"){
@@ -884,7 +884,7 @@
         '<button type="button" class="fd-act" data-goview="calc">🍽️ Open today’s meals ›</button>';
     }
     var lm=(typeof lastMob==="function")?lastMob():null;
-    return '<div class="fd-tx"><b>'+p.detail+'</b>'+(lm?(' — last screen <b>'+lm.score+'/100</b> on '+lm.date+'. Mass should never cost you turn.'):' — 3 moves, ~3 minutes, no gear.')+'</div>'+
+    return '<div class="fd-tx"><b>'+p.detail+'</b>'+(lm?(' — last screen <b>'+lm.score+'/100</b> on '+lm.date+'. Mass should never cost you agility.'):' — 3 moves, ~3 minutes, no gear.')+'</div>'+
       '<button type="button" class="fd-act" data-mobscreen="1">🧭 '+(mobDue()?'Screen due — run it':'Re-run the screen')+'</button>';
   }
   // Progress tab: the full Octane card with its four component pillars.
@@ -936,15 +936,15 @@
   }
   // One shared "Log today" block — identical fields, styling and behavior on
   // Home and Stats (the third copy in the old Train fold was dead code, removed).
-  // weightOnly: a morning weigh-in is JUST the scale — no 7-iron / driver fields,
-  // so a daily weigh-in never reads as a swing-stats prompt.
+  // weightOnly: a morning weigh-in is JUST the scale — no vertical-jump / kick fields,
+  // so a daily weigh-in never reads as an athletic-stats prompt.
   function quickLogHtml(prefix, hint, weightOnly){
     return '<div class="qlog"><div class="qlog-h">'+(weightOnly?'⚖️ Morning weigh-in':'📈 Log today')+'</div>'+
       '<div class="qlog-row">'+
         '<input id="'+prefix+'Body" type="number" inputmode="decimal" placeholder="Weight (lb)" />'+
         (weightOnly?'':
-          '<input id="'+prefix+'Speed" type="number" inputmode="decimal" placeholder="7-iron mph" />'+
-          '<input id="'+prefix+'Drive" type="number" inputmode="decimal" placeholder="Driver yds" />')+
+          '<input id="'+prefix+'Speed" type="number" inputmode="decimal" placeholder="Vertical (in)" />'+
+          '<input id="'+prefix+'Drive" type="number" inputmode="decimal" placeholder="Kick (yds)" />')+
       '</div>'+
       '<button id="'+prefix+'Add" class="qlog-add" type="button">Add</button>'+
       (hint?'<div class="qlog-hint">'+hint+'</div>':'')+

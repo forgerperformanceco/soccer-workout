@@ -16,9 +16,9 @@
     // brand
     g.textBaseline="alphabetic";
     g.font="900 66px system-ui, -apple-system, sans-serif";
-    g.fillStyle="#ffffff"; g.fillText("Fairway",72,132);
-    var bw=g.measureText("Fairway").width;
-    g.fillStyle="#7ef0a8"; g.fillText("Fuel",72+bw,132);
+    g.fillStyle="#ffffff"; g.fillText("Match",72,132);
+    var bw=g.measureText("Match").width;
+    g.fillStyle="#7ef0a8"; g.fillText("Fit",72+bw,132);
     // kicker
     g.font="800 38px system-ui, sans-serif"; g.fillStyle="#8fd6a8";
     g.fillText((o.kick||"").toUpperCase(),72,262);
@@ -44,17 +44,17 @@
     // footer — one line, left-aligned, no collisions
     g.fillStyle="rgba(255,255,255,.08)"; g.fillRect(0,H-150,W,150);
     g.font="800 42px system-ui, sans-serif"; g.fillStyle="#8be9ac";
-    g.fillText("Yardsmith",72,H-58);
-    var fw=g.measureText("Yardsmith").width;
+    g.fillText("MatchFit",72,H-58);
+    var fw=g.measureText("MatchFit").width;
     g.font="600 36px system-ui, sans-serif"; g.fillStyle="#9fc4ac";
-    g.fillText("· Turn muscle into distance ⛳", 72+fw+18, H-58);
+    g.fillText("· Turn muscle into speed ⚽", 72+fw+18, H-58);
     try{ c.toBlob(function(b){ cb(b); },"image/png"); }catch(e){ cb(null); }
   }
   function ffShareImage(o, textFallback){
     ffMakeCard(o, function(blob){
       if(blob){
         try{
-          var file=new File([blob],"yardsmith-card.png",{type:"image/png"});
+          var file=new File([blob],"matchfit-card.png",{type:"image/png"});
           if(navigator.canShare && navigator.canShare({files:[file]}) && navigator.share){
             navigator.share({ files:[file], text:textFallback }).catch(function(){});
             return;
@@ -62,7 +62,7 @@
         }catch(e){}
         try{
           var url=URL.createObjectURL(blob), a=document.createElement("a");
-          a.href=url; a.download="yardsmith-card.png";
+          a.href=url; a.download="matchfit-card.png";
           document.body.appendChild(a); a.click();
           setTimeout(function(){ try{ URL.revokeObjectURL(url); a.remove(); }catch(e2){} },1500);
           ffToast("Card saved as an image — post it anywhere 📤");

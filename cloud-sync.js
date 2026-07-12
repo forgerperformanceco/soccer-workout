@@ -1,5 +1,5 @@
 /* ============================================================================
-   Yardsmith — optional cloud login + progress sync (Supabase, magic-link).
+   MatchFit — optional cloud login + progress sync (Supabase, magic-link).
 
    HOW TO TURN IT ON (≈5 min, see LAUNCH-GUIDE.md §3):
      1. Create a free project at supabase.com.
@@ -622,7 +622,7 @@
   function closeModal() { if (modal) { modal.remove(); modal = null; } }
 
   function onPillClick() {
-    if (user) { if (confirm("Sign out of Yardsmith on this device?")) window.FF.signOut(); }
+    if (user) { if (confirm("Sign out of MatchFit on this device?")) window.FF.signOut(); }
     else window.FF.signIn();
   }
 

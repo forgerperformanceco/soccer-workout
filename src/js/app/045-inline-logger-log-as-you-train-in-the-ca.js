@@ -54,55 +54,55 @@
     return '<div class="il-prog"><div class="il-progbar" style="width:'+pct+'%"></div></div>'+html;
   }
   // Grounded "why this lift" micro-coaching — ties each movement pattern to
-  // clubhead speed using the same framework as the reference docs (ground force,
-  // hip drive, rotation/anti-rotation, lead-leg brace, deceleration). Curated &
+  // speed and power using the same framework as the reference docs (ground force,
+  // hip drive, rotation/anti-rotation, plant-leg brace, deceleration). Curated &
   // offline — no AI, so it's instant and can't hallucinate.
   function liftWhy(name){
     var n=name||""; function m(re){ return re.test(n); }
-    // Speed-day drills first (most direct clubhead-speed transfer).
+    // Speed-day drills first (most direct speed and power transfer).
     if(m(/Overspeed|Speed Stick|SuperSpeed|Swing Trainer|Whoosh/i))
-      return { why:"Overspeed swinging nudges your nervous system to allow a bit more speed than your normal swing. A light stick lets you move faster than usual — the evidence is modest, so treat it as a cheap add-on, not the main event.", cue:"Swing as fast as you physically can — speed is the only goal, both sides." };
+      return { why:"Overspeed work nudges your nervous system to allow a bit more speed than you normally move. Moving faster than usual teaches the body it's possible — the evidence is modest, so treat it as a cheap add-on, not the main event.", cue:"Move as fast as you physically can — speed is the only goal, both sides." };
     if(m(/Footwork|Ground.?force/i))
-      return { why:"Clubhead speed starts from the ground up. Drilling the lead-foot push grooves the pressure shift that fires your hips — the move that turns leg drive into speed.", cue:"Drive hard into the ground from the top, like pushing the floor away." };
+      return { why:"Speed and power start from the ground up. Drilling the foot push grooves the pressure shift that fires your hips — the move that turns leg drive into sprint speed and jump height.", cue:"Drive hard into the ground, like pushing the floor away." };
     if(m(/Med.?ball|Throw|Slam|Chest Pass|Punch|Scoop/i))
-      return { why:"Explosive throws are rotational power with no brakes — you accelerate all the way through the release, exactly like a fast swing. The most transferable power work there is.", cue:"Throw violently and follow all the way through — hold nothing back." };
+      return { why:"Explosive throws are power with no brakes — you accelerate all the way through the release, exactly like a hard shot or an explosive stride. The most transferable power work there is.", cue:"Throw violently and follow all the way through — hold nothing back." };
     if(m(/Jump|Bound|Broad|Hop|Plyo|Pogo/i))
-      return { why:"Jumps train rate of force development — how fast you produce force. Quicker force into the ground means faster hips and a faster club. Power is strength expressed fast.", cue:"Minimum ground contact, maximum effort — explode, don't grind." };
+      return { why:"Jumps train rate of force development — how fast you produce force. Quicker force into the ground means a higher jump and a faster first step. Power is strength expressed fast.", cue:"Minimum ground contact, maximum effort — explode, don't grind." };
     if(m(/Clean|Snatch|High Pull/i))
-      return { why:"Olympic-style pulls train full-body triple extension — ankles, knees and hips firing together, fast. That's the same explosive sequence that powers the downswing.", cue:"Be aggressive and snappy — bar speed is the point." };
+      return { why:"Olympic-style pulls train full-body triple extension — ankles, knees and hips firing together, fast. That's the same explosive sequence that powers a sprint and a jump.", cue:"Be aggressive and snappy — bar speed is the point." };
     if(m(/Pallof|Chop|Russian|Wood ?chop|Rotation|Rotational|Twist|Landmine/i))
-      return { why:"Your core is the transmission between the ground and the club. Rotational and anti-rotation work teaches the trunk to transfer leg drive into the clubhead instead of leaking it — that's where X-factor separation becomes speed.", cue:"Brace first, then turn hard from the hips — keep the spine stacked." };
+      return { why:"Your core is the transmission between the ground and the ball. Rotational and anti-rotation work teaches the trunk to transfer leg drive into your sprint, shot and change of direction instead of leaking it — that's where hip-shoulder separation becomes power.", cue:"Brace first, then turn hard from the hips — keep the spine stacked." };
     if(m(/Leg Extension|Sissy Squat|Knee Extension/i))
-      return { why:"Direct quad work builds the knee-extension strength that stabilizes your lead leg at impact — a firmer post lets the hips fire the club through faster. Placed after the big lifts, it isolates the quads for extra growth without pre-fatiguing your heavy compounds.", cue:"Squeeze the quads hard at the top, lower slow — strict isolation, leave the ego off." };
+      return { why:"Direct quad work builds the knee-extension strength that stabilizes your plant leg when you cut, sprint and shoot — a firmer post lets you change direction and drive off it faster. Placed after the big lifts, it isolates the quads for extra growth without pre-fatiguing your heavy compounds.", cue:"Squeeze the quads hard at the top, lower slow — strict isolation, leave the ego off." };
     if(m(/Squat|Leg Press|Hack/i))
-      return { why:"Vertical ground force is the #1 driver of clubhead speed — the best players push the ground hardest. Heavy squatting builds the leg drive that fires your hips through impact.", cue:"Drive the floor away explosively out of the hole — push the ground, don't just stand up." };
+      return { why:"Vertical ground force drives sprint speed and jump height — the fastest players push the ground hardest. Heavy squatting builds the leg drive behind your acceleration and your jump.", cue:"Drive the floor away explosively out of the hole — push the ground, don't just stand up." };
     if(m(/Leg Curl|Nordic|Glute-?Ham|Ham(string)? Curl/i))
-      return { why:"Curls train the hamstring's other job — bending the knee — which balances all your hip-hinge work and armors the muscle against the strains that fast, rotational movement like the swing can cause.", cue:"Keep the hips flat on the pad, curl hard, then fight the weight down slowly." };
+      return { why:"Curls train the hamstring's other job — bending the knee — which balances all your hip-hinge work and armors the muscle against the strains that fast sprinting and kicking can cause.", cue:"Keep the hips flat on the pad, curl hard, then fight the weight down slowly." };
     if(m(/Deadlift|Romanian|RDL|Hinge|Good ?Morning|Hip Thrust|Kettlebell Swing|Swing/i))
-      return { why:"The downswing is a violent hip extension — the snap of the glutes and hamstrings. Hinge work builds that posterior-chain pop that whips the club through the ball.", cue:"Snap the hips forward and squeeze the glutes hard at lockout — that's impact." };
+      return { why:"Sprinting and jumping are violent hip extension — the snap of the glutes and hamstrings. Hinge work builds that posterior-chain pop behind every stride and take-off.", cue:"Snap the hips forward and squeeze the glutes hard at lockout — that's your top-speed stride." };
     if(m(/Lunge|Split Squat|Step.?up|Bulgarian|Single.?Leg/i))
-      return { why:"At impact nearly all your weight braces on the lead leg. Single-leg strength builds the lead-side post you slam into — a firm post snaps the club through faster.", cue:"Plant and brace the front leg like a wall — drive down through the heel." };
+      return { why:"Sprinting, cutting and shooting all load one leg at a time. Single-leg strength builds the plant-leg post you drive off — a firm post means sharper cuts and a harder push-off.", cue:"Plant and brace the front leg like a wall — drive down through the heel." };
     if(m(/Overhead Press|Shoulder Press|Military|OHP/i))
-      return { why:"Overhead pressing builds shoulder strength and stability so you can deliver force through a long, repeatable swing arc without breaking down.", cue:"Stack the bar over mid-foot, ribs down — no leaning back." };
+      return { why:"Overhead pressing builds shoulder strength and stability for physical duels, throw-ins and shielding — and keeps the shoulders durable.", cue:"Stack the bar over mid-foot, ribs down — no leaning back." };
     if(m(/Bench|Push.?up|Chest|Incline|Dip|Fly|Crossover|Pec Deck/i))
-      return { why:"Pressing strength feeds the trail-arm extension that adds speed late in the downswing, and armors the shoulders for high swing volume.", cue:"Press explosively, control the lowering." };
+      return { why:"Pressing strength builds the upper-body power you use to hold off defenders and win physical battles, and armors the shoulders for contact.", cue:"Press explosively, control the lowering." };
     if(m(/Row|Pull.?up|Chin|Lat|Pulldown|Face ?Pull|Rear Delt|Pull/i))
-      return { why:"The lead arm pulls the club through impact, and a strong back decelerates the swing safely. Pulling adds whip on the way down and protects the shoulder on the way through.", cue:"Pull with the back, not the arms — squeeze the shoulder blade, control the return." };
+      return { why:"A strong back and pulling strength help you shield the ball, hold off challenges and stay balanced through contact — and keep the shoulders healthy.", cue:"Pull with the back, not the arms — squeeze the shoulder blade, control the return." };
     if(m(/Carry|Farmer|Suitcase|Grip/i))
-      return { why:"A stable trunk and strong grip hold the clubface steady against the forces a fast swing generates — speed you can't control isn't speed you can use.", cue:"Stand tall, brace the core, crush the handle." };
+      return { why:"A stable, strong trunk keeps you upright and balanced against the forces of contact and hard cuts — strength you can't control isn't strength you can use.", cue:"Stand tall, brace the core, crush the handle." };
     if(m(/Plank|Anti.?Rotation|Dead ?Bug|Hollow|Bird ?Dog|Core| Ab|Abs/i))
-      return { why:"Trunk stiffness is what lets fast hips actually move the club instead of bending your spine. A rigid core is a faster core.", cue:"Lock ribs to hips, breathe behind the brace." };
+      return { why:"Trunk stiffness is what lets fast hips actually drive your sprint and shot instead of leaking through your spine. A rigid core is a faster core.", cue:"Lock ribs to hips, breathe behind the brace." };
     if(m(/Calf|Tibialis|Ankle/i))
       return { why:"Your ankles are the first link to the ground. Strong, springy lower legs help you load and explode off the turf.", cue:"Full range, pause at the top — build springy, durable ankles." };
     if(m(/Curl|Tricep|Bicep|Wrist|Forearm/i))
-      return { why:"Arms guide the club; the body powers it. This is support work — healthy, strong elbows and wrists handle the speed your big lifts build.", cue:"Strict and controlled — armor, not ego." };
-    return { why:"Every lift here feeds the chain that turns ground force into clubhead speed — build the muscle, then the speed work converts it.", cue:"Full range, max intent up, controlled down." };
+      return { why:"Your legs and core power the game; the arms support. This is accessory work — healthy, strong elbows and wrists round out the athlete your big lifts build.", cue:"Strict and controlled — armor, not ego." };
+    return { why:"Every lift here feeds the chain that turns ground force into speed and power — build the muscle, then the speed work converts it.", cue:"Full range, max intent up, controlled down." };
   }
   // How-to form library — muscles worked, setup/execution cues, common mistakes.
   // Curated and movement-pattern matched (IP-clean, offline). Pairs with liftWhy().
   function exerciseForm(name){
     var n=name||""; function m(re){ return re.test(n); }
-    if(m(/Overspeed|Speed Stick|Whoosh/i)) return { mu:"Full body · CNS / fast-twitch", cues:["Use a light stick — it lets you swing faster than normal.","Make smooth, balanced full swings at MAX effort.","Swing both directions (dominant + non-dominant) each set.","Full rest between reps — every swing is all-out."], miss:["Swinging too hard and losing balance.","Grinding it as strength work — this is pure speed, ramp the volume in."] };
+    if(m(/Overspeed|Speed Stick|Whoosh/i)) return { mu:"Full body · CNS / fast-twitch", cues:["Use a light implement — it lets you move faster than normal.","Make smooth, balanced full-effort reps at MAX speed.","Work both sides each set.","Full rest between reps — every rep is all-out."], miss:["Moving too hard and losing balance.","Grinding it as strength work — this is pure speed, ramp the volume in."] };
     if(m(/Footwork|Ground.?force/i)) return { mu:"Glutes · quads · calves · feet", cues:["Set up athletic, weight balanced.","Drive the lead foot hard into the ground from the top.","Feel the pressure shift toward the lead side.","Stay tall — push the floor, don't sway."], miss:["Swaying instead of pressing into the ground.","Standing too upright with no leg drive."] };
     if(m(/Med.?ball|Throw|Slam|Chest Pass|Punch|Scoop/i)) return { mu:"Core · hips · chest/shoulders", cues:["Load the back hip, then explode through.","Accelerate all the way through the release.","Throw violently — full follow-through.","Reset and rest fully between reps."], miss:["Holding back at release — defeats the purpose.","Using only the arms instead of the hips/core."] };
     if(m(/Jump|Bound|Broad|Hop|Plyo|Pogo/i)) return { mu:"Glutes · quads · hamstrings · calves", cues:["Load with a quick dip, arms back.","Explode up/out as fast as possible.","Land soft and balanced — absorb quietly.","Full reset every rep; quality over quantity."], miss:["Landing stiff or off-balance.","Grinding reps when they slow down — stop the set."] };
@@ -131,17 +131,17 @@
   // (speed work progresses differently from hypertrophy). Collapsible, premium, on the speed card.
   function speed101Html(){
     return '<details class="fold speed101"><summary>🧠 New to speed work? How it works &amp; how to progress</summary><div class="fold-body">'+
-      '<div class="pb-sec"><h4>⚙️ Why this makes you longer</h4>'+
-        '<p>Lifting builds the <b>engine</b> — how much force your muscles can make (plus the mass behind the ball). But clubhead speed is about how <i>fast</i> you deliver that force, not just how much. This day is the <b>transmission</b>: it teaches your nervous system to fire your strength <b>fast</b>, in the swing’s pattern.</p>'+
-        '<p>That’s why in the research, <b>jump power and throw speed predict clubhead speed better than max strength</b> — and flexibility doesn’t predict it at all. <b>Strong-but-slow</b> is exactly the gap this day closes.</p></div>'+
+      '<div class="pb-sec"><h4>⚙️ Why this makes you more explosive</h4>'+
+        '<p>Lifting builds the <b>engine</b> — how much force your muscles can make (plus the size to back it up). But speed and power are about how <i>fast</i> you deliver that force, not just how much. This day is the <b>transmission</b>: it teaches your nervous system to fire your strength <b>fast</b>, in the patterns you play in.</p>'+
+        '<p>That’s why in the research, <b>explosive power — how fast you jump and move — tracks speed and vertical jump better than max strength alone</b>. <b>Strong-but-slow</b> is exactly the gap this day closes.</p></div>'+
       '<div class="pb-sec"><h4>⚡ How to do it right</h4>'+
         '<p><b>Every rep max-velocity.</b> The opposite of a set to failure — move as fast as you physically can on every single rep.</p>'+
         '<p><b>Low reps, full rest.</b> 3–5 reps, then rest fully. The instant a rep visibly slows down, the set is over — a slow rep trains the engine, not the speed.</p>'+
-        '<p><b>Fresh, not fried.</b> Do this rested (not straight after a leg-crushing session), and warm up first — max-intent rotation needs a ready body.</p></div>'+
+        '<p><b>Fresh, not fried.</b> Do this rested (not straight after a leg-crushing session), and warm up first — max-intent movement needs a ready body.</p></div>'+
       '<div class="pb-sec"><h4>📈 How speed work progresses (not like your lifts)</h4>'+
         '<p><b>Gym version:</b> add a little <b>load</b> to the ballistic moves (trap-bar jump, speed bench) — <i>but only while every rep still flies.</i> If the bar slows, drop back. Keep the speed; nudge the load.</p>'+
-        '<p><b>Field version:</b> progress by <b>output</b> — jump a little higher, throw a little farther — and slowly ramp your overspeed swings.</p>'+
-        '<p><b>The real scoreboard:</b> retest your <b>7-iron and driver every couple of weeks</b>. That number climbing is the progression that actually matters — everything above is just the input.</p></div>'+
+        '<p><b>Field version:</b> progress by <b>output</b> — jump a little higher, throw a little farther, sprint a little faster — and slowly ramp your sprint work.</p>'+
+        '<p><b>The real scoreboard:</b> retest your <b>vertical jump every couple of weeks</b>. That number climbing is the progression that actually matters — everything above is just the input.</p></div>'+
       '</div></details>';
   }
   function whyHtml(name, withCoach){
@@ -157,7 +157,7 @@
     var html='<div class="ed-mu">💪 <b>Works:</b> '+f.mu+'</div>'+
       '<div class="ed-sec"><h4>How to do it</h4><ol class="ed-cues">'+f.cues.map(function(c){return '<li>'+c+'</li>';}).join("")+'</ol></div>'+
       '<div class="ed-sec"><h4>Common mistakes</h4><ul class="ed-miss">'+f.miss.map(function(c){return '<li>'+c+'</li>';}).join("")+'</ul></div>'+
-      '<div class="ed-why">⚡ <b>For your swing:</b> '+w.why+'</div>'+
+      '<div class="ed-why">⚡ <b>For your game:</b> '+w.why+'</div>'+
       '<a class="ed-video" href="'+formVideoUrl(name)+'" target="_blank" rel="noopener">'+ffIcon("play",12)+' Watch a form video</a>';
     var b=$("exDemoBody"); if(b) b.innerHTML=html;
     var t=$("exDemoTitle"); if(t) t.textContent=name;

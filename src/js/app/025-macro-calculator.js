@@ -16,12 +16,12 @@
       note: "Aggressive surplus for <b>max strength &amp; speed</b>. High protein, high carb, plenty of fat. Quality food, not a dirty bulk." },
     maintain: { label: "In-Season Maintain", pct: 0.0, proteinPct: 0.30, fatG: 55, weekly:null,
       preFrac: 0.25, postFrac: 0.25,
-      timing: "Split carbs <b>evenly around training</b>, and save some to fuel your round.",
-      note: "Hold your build and <b>steady energy across a 4–5 hour round</b>. Don't slash carbs on tournament weeks." },
+      timing: "Split carbs <b>evenly around training</b>, and save some to fuel your match.",
+      note: "Hold your build and <b>steady energy through training and a full 90-minute match</b>. Don't slash carbs on match-packed weeks." },
     cut: { label: "Lean Out", pct: -0.20, proteinPct: 0.35, fatG: 50, weekly:[-0.01,-0.005],
       preFrac: 0.30, postFrac: 0.35,
       timing: "<b>Concentrate limited carbs around the workout</b>; stay lower the rest of the day.",
-      note: "A cut here is <b>in service of speed</b>: a high-protein deficit that protects muscle while you drop fat, so you <b>keep or gain clubhead speed</b> at a lighter, more powerful bodyweight. Don't crash — that costs muscle and speed." }
+      note: "A cut here is <b>in service of speed</b>: a high-protein deficit that protects muscle while you drop fat, so you <b>keep or gain speed</b> at a lighter, more powerful bodyweight. Don't crash — that costs muscle and speed." }
   };
   var ACTIVITY_LABELS = { "1.2":"Sedentary","1.375":"Light","1.55":"Moderate","1.725":"Very Active","1.9":"Athlete" };
 
@@ -30,22 +30,22 @@
   var GOAL_TRAIN = {
     leanbulk: {
       phase: "🏗️ Build phase · matches your <b>Lean Bulk</b> macros",
-      lead: "<b>Add lean muscle</b> and turn it into <b>clubhead speed</b> — one consistent week that builds size, strength and speed together, all 20 weeks.",
-      foldTitle: "📈 How to add the muscle (and keep your swing)",
+      lead: "<b>Add lean muscle</b> and turn it into <b>speed</b> — one consistent week that builds size, strength and speed together, all 20 weeks.",
+      foldTitle: "📈 How to add the muscle (and keep your game)",
       rate: "<b>Clean surplus:</b> Lean Bulk (+10%), gain <b>~0.5–0.75 lb/week</b> — not a dirty bulk." },
     bulk: {
       phase: "💪 Mass phase · matches your <b>Bulk</b> macros",
-      lead: "<b>Pack on size and strength</b> and convert it to <b>clubhead speed</b> — the same week, fueled by a bigger surplus. Plan a Lean Out afterward to reveal it.",
-      foldTitle: "📈 How to gain the mass (and keep your swing)",
+      lead: "<b>Pack on size and strength</b> and convert it to <b>speed</b> — the same week, fueled by a bigger surplus. Plan a Lean Out afterward to reveal it.",
+      foldTitle: "📈 How to gain the mass (and keep your game)",
       rate: "<b>Surplus:</b> Bulk (+20%), faster scale gain — <b>plan a Lean Out after</b> to show the muscle." },
     maintain: {
-      phase: "⛳ In-season · matches your <b>Maintain</b> macros",
+      phase: "⚽ In-season · matches your <b>Maintain</b> macros",
       lead: "<b>Hold your muscle and sharpen your speed</b> — the in-season week: heavy enough to keep strength, lighter on volume, all the speed work intact.",
       foldTitle: "📈 How to hold size &amp; speed in-season",
       rate: "<b>Maintenance calories:</b> hold your weight — the scale stays roughly flat while you keep strength and speed." },
     cut: {
       phase: "🔻 Lean-out phase · matches your <b>Lean Out</b> macros",
-      lead: "<b>Keep your muscle and clubhead speed while you lean out</b> — train heavy to protect strength, keep the power work, let the deficit drop the fat. Leaner = better power-to-weight = more speed.",
+      lead: "<b>Keep your muscle and speed while you lean out</b> — train heavy to protect strength, keep the power work, let the deficit drop the fat. Leaner = better power-to-weight = more speed.",
       foldTitle: "📈 How to lean out without losing speed",
       rate: "<b>Moderate deficit:</b> Lean Out (−20%), ~<b>0.5–1%/week</b> — high protein + heavy lifting protect muscle and speed." }
   };
@@ -314,7 +314,7 @@
     } catch(e){}
     persist();
   }
-  function placeholder(){ return '<div class="placeholder"><div class="big">⛳</div>Enter your details to see your calorie target and macros.</div>'; }
+  function placeholder(){ return '<div class="placeholder"><div class="big">⚽</div>Enter your details to see your calorie target and macros.</div>'; }
 
   // ---- Dynamic food helper: turn the user's numbers into example portions ----
   // Broad, realistic pools (cooked weights, named cuts) so "Another option" gives variety.
@@ -443,7 +443,7 @@
     {id:"berries", n:"Berries",        e:"🫐", cat:"fruit", p:1,c:15,f:0, serv:"1 cup",    tags:[]},
     {id:"mango",   n:"Mango",          e:"🥭", cat:"fruit", p:1,c:25,f:0, serv:"1 cup",    tags:[]},
     {id:"pineapple",n:"Pineapple",     e:"🍍", cat:"fruit", p:1,c:22,f:0, serv:"1 cup",    tags:[]},
-    // fast fuel (around training / on course)
+    // fast fuel (around training / on the pitch)
     {id:"honey",   n:"Honey",          e:"🍯", cat:"fast", p:0,c:17,f:0, serv:"1 tbsp",    tags:[]},
     {id:"dates",   n:"Medjool dates",  e:"🌴", cat:"fast", p:0,c:18,f:0, serv:"1 date",    tags:[]},
     {id:"ricecake",n:"Rice cakes",     e:"🍘", cat:"fast", p:1,c:14,f:0, serv:"2 cakes",   tags:[]},
@@ -1155,7 +1155,7 @@
   }
   function ffCopyWeekList(btn){
     var p=ffPrefs(), t=ffTargets(); if(!t) return;
-    var groups=ffWeekGroups(ffWeekPlans(p,t)), lines=["Yardsmith — 7-day shopping list",""];
+    var groups=ffWeekGroups(ffWeekPlans(p,t)), lines=["MatchFit — 7-day shopping list",""];
     FF_AISLE_ORDER.concat(["🛒 Other"]).forEach(function(a){ if(!groups[a]) return;
       lines.push(a.replace(/^\S+\s/,"").toUpperCase());
       groups[a].forEach(function(it){ lines.push("- "+ffName(it.food)+" — "+ffWeekQty(it)); });
@@ -1252,7 +1252,7 @@
     html+='<div class="golf-note slim">'+scaleLine+'</div>';
     html+='<details class="fold"><summary>How this is calculated — and how fast the scale should move</summary><div class="fold-body breakdown">'+
       targetBand(r.weekly,r.goal)+
-      '<div class="golf-note"><b>⛳ '+r.goal.label+':</b> '+r.goal.note+'</div>'+
+      '<div class="golf-note"><b>⚽ '+r.goal.label+':</b> '+r.goal.note+'</div>'+
       '<table>'+
       tr("BMR (Mifflin–St Jeor)",round5(r.bmr)+" kcal")+
       tr("Activity multiplier","×"+r.activity+" ("+ACTIVITY_LABELS[String(r.activity)]+")")+

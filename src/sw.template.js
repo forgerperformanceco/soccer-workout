@@ -1,7 +1,7 @@
-/* Yardsmith service worker — offline-first for the single-page app.
+/* MatchFit service worker — offline-first for the single-page app.
    CACHE is stamped with the build's content hash by scripts/build.mjs, so a new
    build invalidates old caches automatically — no manual version bumps. */
-var CACHE = 'yardsmith-{{V}}';
+var CACHE = 'matchfit-{{V}}';
 var ASSETS = [
   './',
   './index.html',
@@ -9,8 +9,8 @@ var ASSETS = [
   './fonts/ffnum.woff2',
   './app.js?v={{V}}',
   './privacy.html',
-  './cloud-sync.js?v=112',
-  './coach.js?v=88',
+  './cloud-sync.js?v=113',
+  './coach.js?v=89',
   './manifest.webmanifest',
   './logo-dark-mark.png',
   // og-image.png intentionally NOT precached — it's only ever fetched by social scrapers.
@@ -50,7 +50,7 @@ self.addEventListener('notificationclick', function (e) {
 self.addEventListener('push', function (e) {
   var data = {};
   try { data = e.data ? e.data.json() : {}; } catch (err) {}
-  e.waitUntil(self.registration.showNotification(data.title || 'Yardsmith ⛳', {
+  e.waitUntil(self.registration.showNotification(data.title || 'MatchFit ⚽', {
     body: data.body || 'Time to train — your yards are waiting.',
     icon: 'icon-192.png', badge: 'icon-192.png', tag: data.tag || 'ff-push'
   }));

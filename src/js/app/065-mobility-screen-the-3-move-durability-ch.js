@@ -68,7 +68,7 @@
         (flags.length
           ? flags.map(function(t){ return '<div class="mob-flag"><b>'+t.ic+' '+t.t+':</b> '+MOB_FIX[t.key]+'.</div>'; }).join("")+
             '<div class="mob-flag ok">Hit those every session and re-screen in 4 weeks — moving well is what lets the new mass become speed.</div>'
-          : '<div class="mob-flag ok">✅ Moving well everywhere. Keep the warm-ups honest and re-screen in 4 weeks — mass should never cost you turn.</div>')+
+          : '<div class="mob-flag ok">✅ Moving well everywhere. Keep the warm-ups honest and re-screen in 4 weeks — muscle should never cost you speed or agility.</div>')+
         '<button class="mob-save" data-mobdone="1">Done</button></div>';
       return;
     }
